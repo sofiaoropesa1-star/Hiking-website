@@ -1,1 +1,7 @@
+waterfall.jpg  → lush waterfall background  
+forest.jpg     → dense forest background  
+mountain.jpg   → mountain ridge background  
+desert.jpg     → warm desert dunes  
+maptexture.jpg → parchment-style map texture  
+earth.jpg      → view of Earth from space
 
