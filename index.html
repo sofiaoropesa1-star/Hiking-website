@@ -1,144 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TrailTrek Adventures</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TrailTrek Adventures</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<header>
-  <h1>TrailTrek Adventures</h1>
-  <nav>
+  <nav class="navbar">
     <a href="#home">Home</a>
     <a href="#prepare">How to Prepare</a>
-    <a href="#lost">If Lost</a>
+    <a href="#lost">If You're Lost</a>
     <a href="#dangers">Dangers</a>
-    <a href="#quiz-map">Trail Map Quiz</a>
+    <a href="#mapquiz">Trail Map Quiz</a>
   </nav>
-</header>
 
-<main>
-  <!-- === SECTION 1: Home === -->
-  <section id="home" class="section">
-    <h2>Welcome to TrailTrek Adventures</h2>
-    <p>Explore the outdoors safely and enjoy every hike!</p>
-    <video controls poster="media/placeholder.jpg">
-      <source src="media/welcome.mp4" type="video/mp4">
-    </video>
-    <div class="mini-quiz">
-      <div class="question">
-        <p>What’s a benefit of hiking?</p>
-        <button class="choice correct">Exercise</button>
-        <button class="choice">Watching TV</button>
-        <button class="choice">Sleeping</button>
-      </div>
+  <section id="home" class="section active" data-bg="media/waterfall.jpg">
+    <div class="content">
+      <h1>Welcome to TrailTrek Adventures</h1>
+      <p>Learn how to hike safely and test your skills.</p>
+      <button class="next-section">Start Exploring</button>
     </div>
   </section>
 
-  <!-- === SECTION 2: How to Prepare === -->
-  <section id="prepare" class="section">
-    <h2>How to Prepare</h2>
-    <p>Tips for planning your hike and packing essentials.</p>
-    <video controls poster="media/placeholder.jpg">
-      <source src="media/prepare.mp4" type="video/mp4">
-    </video>
-    <div class="mini-quiz">
-      <div class="question">
-        <p>Which is essential to bring on a hike?</p>
-        <button class="choice correct">Water</button>
-        <button class="choice">Candy</button>
-        <button class="choice">Phone charger</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- === SECTION 3: If Lost === -->
-  <section id="lost" class="section">
-    <h2>What to Do If You’re Lost</h2>
-    <p>Steps to stay safe if you lose your way.</p>
-    <video controls poster="media/placeholder.jpg">
-      <source src="media/lost.mp4" type="video/mp4">
-    </video>
-    <div class="mini-quiz">
-      <div class="question">
-        <p>First action if lost?</p>
-        <button class="choice correct">Stay calm</button>
-        <button class="choice">Run randomly</button>
-        <button class="choice">Shout continuously</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- === SECTION 4: Dangers === -->
-  <section id="dangers" class="section">
-    <h2>Dangers of Hiking</h2>
-    <p>Common hazards to watch out for.</p>
-    <video controls poster="media/placeholder.jpg">
-      <source src="media/dangers.mp4" type="video/mp4">
-    </video>
-    <div class="mini-quiz">
-      <div class="question">
-        <p>Common danger on hikes?</p>
-        <button class="choice correct">Dehydration</button>
-        <button class="choice">Boredom</button>
-        <button class="choice">Rainbows</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- === SECTION 5: Trail Map Quiz === -->
-  <section id="quiz-map">
-    <h2>Trail Map Quiz</h2>
-    <p>Answer all questions to complete the trail. You can retake anytime!</p>
-    <div class="quiz-map">
-      <div class="quiz-card">
-        <p>1. What should you always bring on a hike?</p>
-        <button class="choice correct">Water</button>
-        <button class="choice">TV</button>
+  <section id="prepare" class="section" data-bg="media/forest.jpg">
+    <div class="content">
+      <h2>How to Prepare</h2>
+      <p>Plan your route, pack essentials, and check weather.</p>
+      <div class="quiz">
+        <p><strong>Mini Quiz:</strong> What’s most important to bring?</p>
+        <button class="choice" data-correct="true">Water</button>
         <button class="choice">Candy</button>
       </div>
-      <div class="quiz-card">
-        <p>2. Best way to signal if lost?</p>
-        <button class="choice correct">Stay visible and use whistle</button>
-        <button class="choice">Run randomly</button>
-        <button class="choice">Hide</button>
-      </div>
-      <div class="quiz-card">
-        <p>3. Common hazard?</p>
-        <button class="choice correct">Slips and falls</button>
-        <button class="choice">Television</button>
-        <button class="choice">Bird watching</button>
-      </div>
-      <div class="quiz-card">
-        <p>4. Ideal footwear?</p>
-        <button class="choice correct">Sturdy hiking boots</button>
-        <button class="choice">Flip-flops</button>
-        <button class="choice">Slippers</button>
-      </div>
-      <div class="quiz-card">
-        <p>5. What to do in heavy rain?</p>
-        <button class="choice correct">Seek shelter</button>
-        <button class="choice">Keep hiking</button>
-        <button class="choice">Swim across rivers</button>
-      </div>
-      <div class="quiz-card">
-        <p>6. Leave No Trace principle?</p>
-        <button class="choice correct">Pack out all trash</button>
-        <button class="choice">Leave wrappers</button>
-        <button class="choice">Mark trees</button>
-      </div>
+      <button class="next-section">Next Section</button>
     </div>
-    <button id="retakeQuiz" class="take-quiz">Retake Quiz</button>
-    <div id="quizFeedback"></div>
   </section>
 
-</main>
+  <section id="lost" class="section" data-bg="media/mountain.jpg">
+    <div class="content">
+      <h2>If You’re Lost</h2>
+      <p>Stay calm, stay put, and signal for help.</p>
+      <div class="quiz">
+        <p><strong>Mini Quiz:</strong> What’s the first thing to do?</p>
+        <button class="choice" data-correct="true">Stop and stay calm</button>
+        <button class="choice">Run around</button>
+      </div>
+      <button class="next-section">Next Section</button>
+    </div>
+  </section>
 
-<footer>
-  © 2025 TrailTrek Adventures — Explore Responsibly
-</footer>
+  <section id="dangers" class="section" data-bg="media/desert.jpg">
+    <div class="content">
+      <h2>Dangers of Hiking</h2>
+      <p>Watch for wildlife, dehydration, and losing daylight.</p>
+      <div class="quiz">
+        <p><strong>Mini Quiz:</strong> A common hiking danger is?</p>
+        <button class="choice">Too many snacks</button>
+        <button class="choice" data-correct="true">Dehydration</button>
+      </div>
+      <button class="next-section">Take the Final Quiz</button>
+    </div>
+  </section>
 
-<script src="script.js"></script>
+  <section id="mapquiz" class="section quiz-map" data-bg="media/maptexture.jpg">
+    <div class="content">
+      <h2>Trail Map Quiz</h2>
+      <div id="quiz-container"></div>
+      <button id="restart-quiz">Retake Quiz</button>
+    </div>
+  </section>
+
+  <div id="earth-transition"></div>
+  <script src="script.js"></script>
 </body>
 </html>
