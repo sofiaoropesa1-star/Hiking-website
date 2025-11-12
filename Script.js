@@ -1,55 +1,59 @@
-// Mini quizzes
-document.querySelectorAll('.mini-quiz .choice').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const parent = btn.closest('.mini-quiz');
-    parent.querySelectorAll('.choice').forEach(c=>{
-      c.classList.remove('correct','wrong');
-    });
-    if(btn.classList.contains('correct')){
-      btn.classList.add('correct');
-    } else {
-      btn.classList.add('wrong');
-    }
+const sections=document.querySelectorAll(".section");
+const buttons=document.querySelectorAll(".next-section");
+const transition=document.getElementById("earth-transition");
+let current=0;
+
+buttons.forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    transition.classList.add("active");
+    setTimeout(()=>{
+      sections[current].classList.remove("active");
+      current=(current+1)%sections.length;
+      document.body.style.backgroundImage=`url('${sections[current].dataset.bg}')`;
+      sections[current].classList.add("active");
+      transition.classList.remove("active");
+    },1200);
   });
 });
 
-// Full quiz
-let quizIndex = 0;
-const cards = document.querySelectorAll('.quiz-map .quiz-card');
-function resetFullQuiz(){
-  quizIndex = 0;
-  cards.forEach(c=>{
-    c.style.display='none';
-    c.querySelectorAll('.choice').forEach(b=>b.classList.remove('correct','wrong'));
-  });
-  cards[quizIndex].style.display='block';
-  document.getElementById('quizFeedback').textContent='';
-}
-resetFullQuiz();
-
-cards.forEach(card=>{
-  card.querySelectorAll('.choice').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      if(btn.classList.contains('correct')){
-        btn.classList.add('correct');
-        document.getElementById('quizFeedback').textContent='✅ Correct!';
-        setTimeout(()=>nextCard(),500);
-      } else {
-        btn.classList.add('wrong');
-        document.getElementById('quizFeedback').textContent='❌ Try again.';
-      }
-    });
+document.querySelectorAll(".choice").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    btn.classList.add(btn.dataset.correct==="true"?"correct":"incorrect");
   });
 });
 
-function nextCard(){
-  cards[quizIndex].style.display='none';
-  quizIndex++;
-  if(quizIndex>=cards.length){
-    document.getElementById('quizFeedback').textContent='🎉 Trail Complete! You can retake anytime.';
-    return;
-  }
-  cards[quizIndex].style.display='block';
-}
+/* Map Quiz logic */
+const quizData=[
+  {q:"What should you bring?",o:["Candy","Water","TV"],a:1},
+  {q:"If lost you should…",o:["Run","Stay calm","Yell"],a:1},
+  {q:"Sign of dehydration?",o:["Dry mouth","Cold","Good energy"],a:0},
+  {q:"Best hiking time?",o:["Daylight","Night"],a:0},
+  {q:"Wildlife safety?",o:["Keep distance","Feed them"],a:0},
+  {q:"Check before hiking?",o:["Weather","Movies"],a:0}
+];
 
-document.getElementById('retakeQuiz').addEventListener('click', resetFullQuiz);
+const quizContainer=document.getElementById("quiz-container");
+function renderQuiz(){
+  quizContainer.innerHTML="";
+  quizData.forEach((item,i)=>{
+    const div=document.createElement("div");
+    div.className="quiz-question";
+    div.innerHTML=`<p>${i+1}. ${item.q}</p>`+
+      item.o.map((opt,idx)=>
+        `<button class='choice' data-q='${i}' data-idx='${idx}'>${opt}</button>`).join("");
+    quizContainer.appendChild(div);
+  });
+  setupQuizButtons();
+}
+function setupQuizButtons(){
+  quizContainer.querySelectorAll(".choice").forEach(b=>{
+    b.onclick=()=>{
+      const q=quizData[b.dataset.q];
+      const correct=q.a==b.dataset.idx;
+      b.classList.add(correct?"correct":"incorrect");
+      quizContainer.scrollBy({left:window.innerWidth,behavior:"smooth"});
+    };
+  });
+}
+document.getElementById("restart-quiz").onclick=renderQuiz;
+renderQuiz();
