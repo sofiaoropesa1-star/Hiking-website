@@ -1,43 +1,6 @@
-body {
-  margin:0;
-  font-family:Inter, sans-serif;
-  background:#f4fff4;
-}
-header {
-  position:fixed;
-  top:0;
-  width:100%;
-  background:#4e7d32;
-  color:white;
-  padding:10px;
-  display:flex;
-  gap:12px;
-}
-nav a {
-  color:white;
-  text-decoration:none;
-  padding:6px 10px;
-  border-radius:6px;
-}
-nav a:hover {background:rgba(255,255,255,0.1);}
-.section {padding:80px 20px; min-height:100vh;}
-.mini-quiz, .quiz-map {margin-top:16px;}
-.choice {
-  display:block;
-  margin:6px 0;
-  padding:8px 12px;
-  border-radius:6px;
-  border:1px solid #333;
-  cursor:pointer;
-}
-.choice.correct {background:#c8ffde;}
-.choice.wrong {background:#ffd6d0;}
-.take-quiz {
-  margin-top:12px;
-  padding:10px 14px;
-  border-radius:10px;
-  background:#4e7d32;
-  color:white;
-  cursor:pointer;
-  font-weight:700;
-}
+waterfall.jpg      → Section 1
+forest.jpg         → Section 2
+canyon.jpg         → Section 3
+rugged.jpg         → Section 4
+maptexture.jpg     → Final Test
+earth.jpg          → For Earth zoom animation
