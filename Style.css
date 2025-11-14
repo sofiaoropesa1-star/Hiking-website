@@ -1,6 +1,11 @@
-waterfall.jpg      → Section 1
-forest.jpg         → Section 2
-canyon.jpg         → Section 3
-rugged.jpg         → Section 4
-maptexture.jpg     → Final Test
-earth.jpg          → For Earth zoom animation
+/hiking-website
+  ├─ index.html
+  ├─ style.css
+  ├─ script.js
+  └─ media/
+       ├─ waterfall.jpg
+       ├─ forest.jpg
+       ├─ canyon.jpg
+       ├─ rugged.jpg
+       ├─ maptexture.jpg
+       └─ earth.jpg
