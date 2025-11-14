@@ -1,6 +1,40 @@
-waterfall.jpg  → lush waterfall background  
-forest.jpg     → dense forest background  
-mountain.jpg   → mountain ridge background  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrailTrek Adventures</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="#section1">Home</a>
+    <a href="#section2">Prepare</a>
+    <a href="#section3">Dangers</a>
+    <a href="#section4">Lost</a>
+    <a href="#test">Trail Map Quiz</a>
+  </nav>
+
+  <!-- SECTION 1 -->
+  <section id="section1" class="section active" data-bg="media/waterfall.jpg">
+    <div class="content">
+      <h1>Introduction to Hiking</h1>
+      <p>Hiking is the activity of walking through natural environments such as forests, mountains, deserts, and parks. Anyone can enjoy it without special skills.</p>
+      <p>It strengthens your legs, improves breathing, reduces stress, and helps you connect with nature.</p>
+      <div class="summary-box">
+        <h3>Quick Summary</h3>
+        <ul>
+          <li>Hiking is walking in nature.</li>
+          <li>Improves health and reduces stress.</li>
+          <li>Anyone can start with basic gear.</li>
+          <li>Types: day hikes, backpacking, urban hikes.</li>
+          <li>Comfortable shoes, water, and snacks are enough to begin.</li>
+        </ul>
+      </div>
+      <button class="next-section">Next Section</button>
+    </div>
+ background  
 desert.jpg     → warm desert dunes  
 maptexture.jpg → parchment-style map texture  
 earth.jpg      → view of Earth from space
