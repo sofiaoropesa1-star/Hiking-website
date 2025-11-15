@@ -68,3 +68,37 @@ function setupQuizButtons() {
 document.getElementById("restart-quiz").onclick = renderQuiz;
 
 renderQuiz();
+    const div = document.createElement("div");
+    div.className = "quiz-question";
+
+    div.innerHTML =
+      `<p>${i+1}. ${item.q}</p>` +
+      item.o.map((opt,idx)=>
+        `<button class='choice' data-q='${i}' data-idx='${idx}'>${opt}</button>`
+      ).join("");
+
+    quizContainer.appendChild(div);
+  });
+
+  setupQuizButtons();
+}
+
+function setupQuizButtons() {
+  quizContainer.querySelectorAll(".choice").forEach(b => {
+    b.onclick = () => {
+      const q = quizData[b.dataset.q];
+      const correct = q.a == b.dataset.idx;
+
+      b.classList.add(correct ? "correct" : "incorrect");
+
+      quizContainer.scrollBy({
+        left: window.innerWidth,
+        behavior: "smooth"
+      });
+    };
+  });
+}
+
+document.getElementById("restart-quiz").onclick = renderQuiz;
+
+renderQuiz();
