@@ -70,3 +70,13 @@ button {
   min-width:100%;
   padding:1em;
 }
+index.html       ← Your main page (you already have this)
+style.css        ← All styling (colors, backgrounds, layouts)
+script.js        ← All animations, section switching, quizzes
+media/           ← Folder containing 6 images:
+    waterfall.jpg
+    forest.jpg
+    canyon.jpg
+    rugged.jpg
+    maptexture.jpg
+    earth.jpg
