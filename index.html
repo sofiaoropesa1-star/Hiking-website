@@ -1,39 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TrailTrek Adventures</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-  <nav class="navbar">
-    <a href="#section1">Home</a>
-    <a href="#section2">Prepare</a>
-    <a href="#section3">Dangers</a>
-    <a href="#section4">Lost</a>
-    <a href="#test">Trail Map Quiz</a>
-  </nav>
-
-  <!-- SECTION 1 -->
-  <section id="section1" class="section active" data-bg="media/waterfall.jpg">
-    <div class="content">
-      <h1>Introduction to Hiking</h1>
-      <p>Hiking is walking through forests, mountains, deserts, and parks. Anyone can enjoy it without special skills.</p>
-      <p>It strengthens your legs, improves breathing, reduces stress, and helps you connect with nature.</p>
-      <div class="summary-box">
-        <h3>Quick Summary</h3>
-        <ul>
-          <li>Walking in nature</li>
-          <li>Improves health and reduces stress</li>
-          <li>Anyone can start with basic gear</li>
-          <li>Types: day hikes, backpacking, urban hikes</li>
-          <li>Simple gear is enough to start</li>
-        </ul>
-      </div>
-      <button class="next-section">Next Section</button>
-    </div>
+<link rel="stylesheet" href="style.css">
   </section>
 
   <!-- SECTION 2 -->
@@ -184,3 +149,122 @@
   <script src="script.js"></script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrailTrek Adventures</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="#section1">Home</a>
+    <a href="#section2">Prepare</a>
+    <a href="#section3">Dangers</a>
+    <a href="#section4">Lost</a>
+    <a href="#test">Trail Map Quiz</a>
+  </nav>
+
+  <!-- SECTION 1 -->
+  <section id="section1" class="section active" data-bg="media/waterfall.jpg">
+    <div class="content">
+      <h1>Introduction to Hiking</h1>
+      <p>Hiking is walking through forests, mountains, deserts, and parks. Anyone can enjoy it without special skills.</p>
+      <p>It strengthens your legs, improves breathing, reduces stress, and allows you to connect with nature in a meaningful way.</p>
+
+      <div class="summary-box">
+        <h3>Quick Summary</h3>
+        <ul>
+          <li>Walking in nature</li>
+          <li>Improves health and reduces stress</li>
+          <li>Anyone can start with basic gear</li>
+          <li>Simple outdoor activity</li>
+          <li>Can be short or long distance</li>
+        </ul>
+      </div>
+
+      <button class="next-section">Next Section</button>
+    </div>
+  </section>
+
+  <!-- SECTION 2 -->
+  <section id="section2" class="section" data-bg="media/forest.jpg">
+    <div class="content">
+      <h1>How to Prepare</h1>
+      <p>Good preparation includes researching your trail, checking weather, wearing layers, and carrying important items such as water, snacks, a phone, and basic first aid.</p>
+
+      <div class="summary-box">
+        <h3>Quick Summary</h3>
+        <ul>
+          <li>Research the trail</li>
+          <li>Dress for weather</li>
+          <li>Carry essentials</li>
+          <li>Tell someone your plan</li>
+          <li>Start with easy trails</li>
+        </ul>
+      </div>
+
+      <button class="next-section">Next Section</button>
+    </div>
+  </section>
+
+  <!-- SECTION 3 -->
+  <section id="section3" class="section" data-bg="media/canyon.jpg">
+    <div class="content">
+      <h1>Dangers of Hiking</h1>
+      <p>Nature can be unpredictable. Weather changes suddenly, animals may appear, dehydration can sneak up on you, and injuries like twisted ankles can occur if you're not careful.</p>
+
+      <div class="summary-box">
+        <h3>Quick Summary</h3>
+        <ul>
+          <li>Weather changes quickly</li>
+          <li>Watch for wildlife</li>
+          <li>Stay hydrated</li>
+          <li>Stay on the trail</li>
+          <li>Be aware of surroundings</li>
+        </ul>
+      </div>
+
+      <button class="next-section">Next Section</button>
+    </div>
+  </section>
+
+  <!-- SECTION 4 -->
+  <section id="section4" class="section" data-bg="media/rugged.jpg">
+    <div class="content">
+      <h1>What to Do If You Get Lost</h1>
+      <p>If you find yourself lost, follow the STOP method: Stop, Think, Observe, and Plan. Staying calm and staying in one place usually increases your chance of being found quickly.</p>
+
+      <div class="summary-box">
+        <h3>Quick Summary</h3>
+        <ul>
+          <li>Stay calm</li>
+          <li>STOP method</li>
+          <li>Retrace steps only if safe</li>
+          <li>Make yourself visible</li>
+          <li>Signal for help</li>
+        </ul>
+      </div>
+
+      <button class="next-section">Take Final Quiz</button>
+    </div>
+  </section>
+
+  <!-- FINAL MAP QUIZ -->
+  <section id="test" class="section quiz-map" data-bg="media/maptexture.jpg">
+    <div class="content">
+      <h1>Trail Map Quiz</h1>
+      <div id="quiz-container"></div>
+      <button id="restart-quiz">Retake Quiz</button>
+    </div>
+  </section>
+
+  <!-- Earth Zoom Animation -->
+  <div id="earth-transition"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+<script src="script.js"></script>
