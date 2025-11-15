@@ -70,6 +70,42 @@ button {
   min-width:100%;
   padding:1em;
 }
+.summary-box {
+  margin-top:1em;
+  background:rgba(0,0,0,0.3);
+  padding:1em;
+  border-radius:8px;
+}
+
+.choice.correct {background:green!important;}
+.choice.incorrect {background:red!important;}
+
+#earth-transition {
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100vh;
+  background:url('media/earth.jpg') center/cover no-repeat;
+  transform:scale(0);
+  opacity:0;
+  transition:transform 1.2s ease, opacity 1.2s ease;
+  z-index:20;
+  pointer-events:none;
+}
+#earth-transition.active {
+  transform:scale(1.1);
+  opacity:1;
+}
+
+.quiz-map {background:url('media/maptexture.jpg') center/cover no-repeat;}
+#quiz-container {
+  display:flex;
+  overflow-x:auto;
+  scroll-behavior:smooth;
+}
+.quiz-question {
+  min-width:100%;
+  padding:1em;
+}
 index.html       ← Your main page (you already have this)
 style.css        ← All styling (colors, backgrounds, layouts)
 script.js        ← All animations, section switching, quizzes
