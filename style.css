@@ -1,39 +1,42 @@
-let currentSection = 0;
-const pages = document.querySelectorAll(".page");
-const overlay = document.getElementById("earth-overlay");
-const earth = document.getElementById("earth-img");
-
-pages[0].style.backgroundImage = `url(${pages[0].dataset.bg})`;
-
-document.querySelectorAll(".next").forEach(btn => {
-    btn.addEventListener("click", () => {
-        triggerZoom(btn.dataset.next);
-    });
-});
-
-function triggerZoom(nextIndex) {
-    overlay.style.display = "flex";
-    earth.style.transform = "scale(0.1)";
-
-    setTimeout(() => {
-        earth.style.transform = "scale(3)";
-    }, 50);
-
-    setTimeout(() => {
-        overlay.style.display = "none";
-        goToSection(nextIndex);
-    }, 1500);
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
 }
 
-function goToSection(index) {
-    pages[currentSection].classList.remove("active");
-    currentSection = Number(index);
-    pages[currentSection].classList.add("active");
-
-    let bg = pages[currentSection].dataset.bg;
-    pages[currentSection].style.backgroundImage = `url(${bg})`;
+.section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-shadow: 0 0 10px black;
+    transition: opacity 1s ease, transform 1s ease;
 }
 
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(1.2);
+}
+
+.nextBtn {
+    margin-top: 20px;
+    padding: 12px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+}
 /* QUIZ */
 function checkQuiz(q, ans) {
     let result = document.getElementById("result");
