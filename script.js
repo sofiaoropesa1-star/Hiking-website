@@ -1,39 +1,51 @@
-const sections = document.querySelectorAll(".section");
-const buttons = document.querySelectorAll(".next-section");
-const transition = document.getElementById("earth-transition");
-let current = 0;
+let currentSection = 0;
+const pages = document.querySelectorAll(".page");
+const overlay = document.getElementById("earth-overlay");
+const earth = document.getElementById("earth-img");
 
-sections.forEach(s => s.style.backgroundImage = `url(${s.dataset.bg})`);
+pages[0].style.backgroundImage = `url(${pages[0].dataset.bg})`;
 
-buttons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    transition.classList.add("active");
-
-    setTimeout(() => {
-      sections[current].classList.remove("active");
-      current = (current + 1) % sections.length;
-      sections[current].classList.add("active");
-
-      transition.classList.remove("active");
-    }, 1200);
-  });
+document.querySelectorAll(".next").forEach(btn => {
+    btn.addEventListener("click", () => {
+        triggerZoom(btn.dataset.next);
+    });
 });
 
-const quizData = [
-  {q:"What should you bring?", o:["Candy","Water","TV"], a:1},
-  {q:"If lost you should…", o:["Run","Stay calm","Yell"], a:1},
-  {q:"Sign of dehydration?", o:["Dry mouth","Cold","Good energy"], a:0},
-  {q:"Best hiking time?", o:["Daylight","Night"], a:0},
-  {q:"Wildlife safety?", o:["Keep distance","Feed them"], a:0},
-  {q:"Check before hiking?", o:["Weather","Movies"], a:0}
-];
+function triggerZoom(nextIndex) {
+    overlay.style.display = "flex";
+    earth.style.transform = "scale(0.1)";
 
-const quizContainer = document.getElementById("quiz-container");
+    setTimeout(() => {
+        earth.style.transform = "scale(3)";
+    }, 50);
 
-function renderQuiz() {
-  quizContainer.innerHTML = "";
-  
-  quizData.forEach((item, i) => {
+    setTimeout(() => {
+        overlay.style.display = "none";
+        goToSection(nextIndex);
+    }, 1500);
+}
+
+function goToSection(index) {
+    pages[currentSection].classList.remove("active");
+    currentSection = Number(index);
+    pages[currentSection].classList.add("active");
+
+    let bg = pages[currentSection].dataset.bg;
+    pages[currentSection].style.backgroundImage = `url(${bg})`;
+}
+
+/* QUIZ */
+function checkQuiz(q, ans) {
+    let result = document.getElementById("result");
+
+    if (q === 1 && ans === "forest") result.innerText = "Correct!";
+    else if (q === 2 && ans === "mountain") result.innerText = "Correct!";
+    else result.innerText = "Incorrect!";
+}
+
+function restart() {
+    goToSection(0);
+}
     const div = document.createElement("div");
     div.className = "quiz-question";
 
