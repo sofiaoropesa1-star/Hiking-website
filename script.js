@@ -1,39 +1,22 @@
-let currentSection = 0;
-const pages = document.querySelectorAll(".page");
-const overlay = document.getElementById("earth-overlay");
-const earth = document.getElementById("earth-img");
+function nextSection(num) {
+    let current = document.querySelector(".section:not(.hidden)");
+    let next = document.getElementById("section" + num);
 
-pages[0].style.backgroundImage = `url(${pages[0].dataset.bg})`;
-
-document.querySelectorAll(".next").forEach(btn => {
-    btn.addEventListener("click", () => {
-        triggerZoom(btn.dataset.next);
-    });
-});
-
-function triggerZoom(nextIndex) {
-    overlay.style.display = "flex";
-    earth.style.transform = "scale(0.1)";
-
-    setTimeout(() => {
-        earth.style.transform = "scale(3)";
-    }, 50);
-
-    setTimeout(() => {
-        overlay.style.display = "none";
-        goToSection(nextIndex);
-    }, 1500);
+    current.classList.add("hidden");
+    next.classList.remove("hidden");
 }
 
-function goToSection(index) {
-    pages[currentSection].classList.remove("active");
-    currentSection = Number(index);
-    pages[currentSection].classList.add("active");
+function checkAnswer(ans) {
+    let result = document.getElementById("result");
 
-    let bg = pages[currentSection].dataset.bg;
-    pages[currentSection].style.backgroundImage = `url(${bg})`;
+    if (ans === "canyon") {
+        result.innerHTML = "Correct! Canyon trails are known for steep cliffs.";
+        result.style.color = "lightgreen";
+    } else {
+        result.innerHTML = "Incorrect. Try again!";
+        result.style.color = "red";
+    }
 }
-
 /* QUIZ */
 function checkQuiz(q, ans) {
     let result = document.getElementById("result");
