@@ -1,39 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TrailTrek Adventures</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiking Website</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <nav class="navbar">
-    <a href="#section1">Home</a>
-    <a href="#section2">Prepare</a>
-    <a href="#section3">Dangers</a>
-    <a href="#section4">Lost</a>
-    <a href="#test">Trail Map Quiz</a>
-  </nav>
+<!-- Earth Zoom Overlay -->
+<div id="earth-overlay">
+    <img src="media/earth.jpg" id="earth-img">
+</div>
 
-  <!-- SECTION 1 -->
-  <section id="section1" class="section active" data-bg="media/waterfall.jpg">
-    <div class="content">
-      <h1>Introduction to Hiking</h1>
-      <p>Hiking is walking through forests, mountains, deserts, and parks. Anyone can enjoy it without special skills.</p>
-      <p>It strengthens your legs, improves breathing, reduces stress, and helps you connect with nature.</p>
+<!-- MAIN CONTENT -->
+<div id="sections">
 
-      <div class="summary-box">
-        <h3>Quick Summary</h3>
+    <!-- SECTION 1 -->
+    <section class="page active" data-bg="media/forest.jpg">
+        <h1>Forest Hiking</h1>
+        <p>Forest hiking lets you explore dense trees, wildlife, and cooler, shaded paths.</p>
         <ul>
-          <li>Walking in nature</li>
-          <li>Improves health and reduces stress</li>
-          <li>Anyone can start with basic gear</li>
-          <li>Types: day hikes, backpacking, urban hikes</li>
-          <li>Simple gear is enough to start</li>
+            <li>Lots of trees</li>
+            <li>Plenty of wildlife</li>
+            <li>Cooler temperature</li>
         </ul>
-      </div>
+        <button class="next" data-next="1">Next Section</button>
+    </section>
 
+    <!-- SECTION 2 -->
+    <section class="page" data-bg="media/canyon.jpg">
+        <h1>Canyon Hiking</h1>
+        <p>Canyon hiking gives you huge cliffs, narrow passages, and dramatic rock formations.</p>
+        <ul>
+            <li>Large cliffs</li>
+            <li>Dry air</li>
+            <li>Beautiful rock layers</li>
+        </ul>
+        <button class="next" data-next="2">Next Section</button>
+    </section>
+
+    <!-- SECTION 3 -->
+    <section class="page" data-bg="media/Rugged.jpg">
+        <h1>Mountain Hiking</h1>
+        <p>Mountain trails are steep, rocky, and challenging but offer breathtaking views.</p>
+        <ul>
+            <li>High altitude</li>
+            <li>Steep climbs</li>
+            <li>Epic views</li>
+        </ul>
+        <button class="next" data-next="3">Next Section</button>
+    </section>
+
+    <!-- QUIZ SECTION -->
+    <section class="page" data-bg="media/earth.jpg">
+        <h1>Quick Hiking Quiz</h1>
+
+        <div id="quiz">
+            <p>1. Which hike has dense trees?</p>
+            <button onclick="checkQuiz(1,'forest')">Forest</button>
+            <button onclick="checkQuiz(1,'canyon')">Canyon</button>
+
+            <p>2. Which hike is rocky and steep?</p>
+            <button onclick="checkQuiz(2,'mountain')">Mountain</button>
+            <button onclick="checkQuiz(2,'forest')">Forest</button>
+
+            <p id="result"></p>
+        </div>
+
+        <button onclick="restart()">Restart</button>
+    </section>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
       <button class="next-section">Next Section</button>
     </div>
   </section>
