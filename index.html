@@ -17,30 +17,34 @@
         <a href="#prepare">Prepare</a>
         <a href="#dangers">Dangers</a>
         <a href="#lost">Lost</a>
-        <a href="#quizA">Quick Quiz</a>
+        <a href="#quizA">Quiz</a>
         <a href="#quizB">Map Quiz</a>
     </nav>
 
-    <!-- INTRO -->
-    <section id="intro" class="section" data-bg="media/waterfall.jpg">
+    <!-- INTRO SECTION -->
+    <section id="intro" class="section active" data-bg="media/waterfall.jpg">
         <div class="content">
             <h1>Introduction to Hiking</h1>
             <p>Hiking means walking through forests, mountains, deserts, and parks. Anyone can enjoy it without special skills.</p>
-            <p>It strengthens your body, reduces stress, and lets you experience nature up close. Make sure to start with easy trails and gradually increase difficulty.</p>
+            <p>It strengthens your body, improves breathing, reduces stress, and lets you experience nature.</p>
+            <p>Always wear proper footwear and carry essentials like water and a first aid kit.</p>
+            <button class="nextBtn" onclick="nextSection('mountain')">Next Section</button>
         </div>
     </section>
 
     <!-- MOUNTAIN -->
-    <section id="mountain" class="section" data-bg="media/Rugged.jpg">
+    <section id="mountain" class="section" data-bg="media/rugged.jpg">
         <div class="content">
             <h1>Mountain Hiking</h1>
             <p>Mountain hiking offers breathtaking views and challenging climbs.</p>
             <ul>
-                <li>High altitude can affect breathing.</li>
-                <li>Steep climbs require strong leg muscles.</li>
-                <li>Cooler air at the top, so dress in layers.</li>
-                <li>Check weather carefully; conditions can change quickly.</li>
+                <li>High altitude</li>
+                <li>Steep climbs</li>
+                <li>Cooler air at the top</li>
+                <li>Requires good stamina</li>
             </ul>
+            <button class="preveousBtn" onclick="prevSection('intro')">Preveous Section</button>
+            <button class="nextBtn" onclick="nextSection('canyon')">Next Section</button>
         </div>
     </section>
 
@@ -50,11 +54,13 @@
             <h1>Canyon Trails</h1>
             <p>Canyon hiking offers deep pathways carved by nature over millions of years.</p>
             <ul>
-                <li>Steep rocky walls can be slippery.</li>
-                <li>Shaded paths keep you cool, but be careful with loose rocks.</li>
-                <li>Famous in the Southwest U.S., like the Grand Canyon.</li>
-                <li>Bring plenty of water — some trails are dry for long stretches.</li>
+                <li>Steep rocky walls</li>
+                <li>Cool shaded paths</li>
+                <li>Famous in the Southwest U.S.</li>
+                <li>Watch for loose rocks</li>
             </ul>
+            <button class="preveousBtn" onclick="prevSection('mountain')">Preveous Section</button>
+            <button class="nextBtn" onclick="nextSection('forest')">Next Section</button>
         </div>
     </section>
 
@@ -64,11 +70,13 @@
             <h1>Forest Trails</h1>
             <p>Forests provide peaceful scenery filled with wildlife and plant life.</p>
             <ul>
-                <li>Lush green surroundings.</li>
-                <li>Soft dirt pathways are easier on the feet.</li>
-                <li>Great shade on sunny days.</li>
-                <li>Watch for roots and uneven terrain.</li>
+                <li>Lush green surroundings</li>
+                <li>Soft dirt pathways</li>
+                <li>Great shade on sunny days</li>
+                <li>Listen for wildlife sounds</li>
             </ul>
+            <button class="preveousBtn" onclick="prevSection('canyon')">Preveous Section</button>
+            <button class="nextBtn" onclick="nextSection('prepare')">Next Section</button>
         </div>
     </section>
 
@@ -76,12 +84,14 @@
     <section id="prepare" class="section" data-bg="media/forest.jpg">
         <div class="content">
             <h1>How to Prepare</h1>
-            <p>Research your trail, check weather, dress in layers, and pack essentials like water and snacks.</p>
+            <p>Research your trail, check the weather, wear layers, and pack essentials like water, snacks, and a first aid kit.</p>
             <ul>
-                <li>Bring a map or GPS device.</li>
-                <li>Wear proper hiking shoes.</li>
-                <li>Tell someone your plan and expected return time.</li>
+                <li>Inform someone about your route</li>
+                <li>Start with easy trails</li>
+                <li>Check your equipment</li>
             </ul>
+            <button class="preveousBtn" onclick="prevSection('forest')">Preveous Section</button>
+            <button class="nextBtn" onclick="nextSection('dangers')">Next Section</button>
         </div>
     </section>
 
@@ -91,10 +101,12 @@
             <h1>Dangers of Hiking</h1>
             <p>Weather can change quickly, wildlife may appear, and dehydration can happen. Stay alert and follow safety rules.</p>
             <ul>
-                <li>Watch for sudden storms.</li>
-                <li>Be aware of snakes, insects, and wildlife.</li>
-                <li>Carry first aid and know how to use it.</li>
+                <li>Check weather forecast</li>
+                <li>Carry enough water</li>
+                <li>Stay on marked trails</li>
             </ul>
+            <button class="preveousBtn" onclick="prevSection('prepare')">Preveous Section</button>
+            <button class="nextBtn" onclick="nextSection('lost')">Next Section</button>
         </div>
     </section>
 
@@ -103,11 +115,8 @@
         <div class="content">
             <h1>What to Do If You Get Lost</h1>
             <p>Stay calm and use the STOP method: Stop, Think, Observe, Plan. Make yourself visible and signal for help.</p>
-            <ul>
-                <li>Stay where you are if possible.</li>
-                <li>Use a whistle or reflective gear to signal.</li>
-                <li>Conserve energy and water.</li>
-            </ul>
+            <button class="preveousBtn" onclick="prevSection('dangers')">Preveous Section</button>
+            <button class="nextBtn" onclick="nextSection('quizA')">Next Section</button>
         </div>
     </section>
 
@@ -120,6 +129,8 @@
             <button onclick="checkAnswerA('canyon')">Canyon</button>
             <button onclick="checkAnswerA('forest')">Forest</button>
             <p id="resultA"></p>
+            <button class="preveousBtn" onclick="prevSection('lost')">Preveous Section</button>
+            <button class="nextBtn" onclick="nextSection('quizB')">Next Section</button>
         </div>
     </section>
 
@@ -129,8 +140,11 @@
             <h1>Trail Map Quiz</h1>
             <div id="quiz-container"></div>
             <button id="restart-quiz">Retake Quiz</button>
+            <button class="preveousBtn" onclick="prevSection('quizA')">Preveous Section</button>
         </div>
     </section>
+
+    <div id="earth-transition"></div>
 
     <script src="script.js"></script>
 </body>
