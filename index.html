@@ -1,416 +1,122 @@
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hiking Adventure</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrailTrek Adventures</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div id="section1" class="section" style="background-image: url('media/Rugged.jpg');">
-    <h1>Mountain Hiking</h1>
-    <p>Mountain hiking offers breathtaking views and challenging climbs.</p>
-    <ul>
-        <li>You gain elevation quickly.</li>
-        <li>The air gets cooler as you go up.</li>
-        <li>Great for building endurance.</li>
-    </ul>
-    <button class="nextBtn" onclick="nextSection(2)">Next</button>
-</div>
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar">
+        <a href="#intro">Home</a>
+        <a href="#mountain">Mountain</a>
+        <a href="#canyon">Canyon</a>
+        <a href="#forest">Forest</a>
+        <a href="#prepare">Prepare</a>
+        <a href="#dangers">Dangers</a>
+        <a href="#lost">Lost</a>
+        <a href="#quizA">Quiz</a>
+        <a href="#quizB">Map Quiz</a>
+    </nav>
 
-<div id="section2" class="section hidden" style="background-image: url('media/canyon.jpg');">
-    <h1>Canyon Trails</h1>
-    <p>Canyon hiking offers deep pathways carved by nature over millions of years.</p>
-    <ul>
-        <li>Steep walls around you.</li>
-        <li>Often cooler and shaded.</li>
-        <li>Famous in the Southwest U.S.</li>
-    </ul>
-    <button class="nextBtn" onclick="nextSection(3)">Next</button>
-</div>
-
-<div id="section3" class="section hidden" style="background-image: url('media/forest.jpg');">
-    <h1>Forest Trails</h1>
-    <p>Forests provide peaceful scenery filled with wildlife and plant life.</p>
-    <ul>
-        <li>Lush green surroundings.</li>
-        <li>Soft dirt pathways.</li>
-        <li>Great shade on sunny days.</li>
-    </ul>
-    <button class="nextBtn" onclick="nextSection(4)">Next</button>
-</div>
-
-<div id="section4" class="section hidden" style="background-image: url('media/earth.jpg');">
-    <h1>Final Quiz</h1>
-    <p>Which trail is known for steep cliffs and deep stone walls?</p>
-
-    <button onclick="checkAnswer('mountain')">Mountain</button>
-    <button onclick="checkAnswer('canyon')">Canyon</button>
-    <button onclick="checkAnswer('forest')">Forest</button>
-
-    <p id="result"></p>
-</div>
-
-<script src="script.js"></script>
-</body>
-</html>
-            <li>Dry air</li>
-            <li>Beautiful rock layers</li>
-        </ul>
-        <button class="next" data-next="2">Next Section</button>
-    </section>
-
-    <!-- SECTION 3 -->
-    <section class="page" data-bg="media/Rugged.jpg">
-        <h1>Mountain Hiking</h1>
-        <p>Mountain trails are steep, rocky, and challenging but offer breathtaking views.</p>
-        <ul>
-            <li>High altitude</li>
-            <li>Steep climbs</li>
-            <li>Epic views</li>
-        </ul>
-        <button class="next" data-next="3">Next Section</button>
-    </section>
-
-    <!-- QUIZ SECTION -->
-    <section class="page" data-bg="media/earth.jpg">
-        <h1>Quick Hiking Quiz</h1>
-
-        <div id="quiz">
-            <p>1. Which hike has dense trees?</p>
-            <button onclick="checkQuiz(1,'forest')">Forest</button>
-            <button onclick="checkQuiz(1,'canyon')">Canyon</button>
-
-            <p>2. Which hike is rocky and steep?</p>
-            <button onclick="checkQuiz(2,'mountain')">Mountain</button>
-            <button onclick="checkQuiz(2,'forest')">Forest</button>
-
-            <p id="result"></p>
+    <!-- INTRO SECTION -->
+    <section id="intro" class="section" data-bg="media/waterfall.jpg">
+        <div class="content">
+            <h1>Introduction to Hiking</h1>
+            <p>Hiking means walking through forests, mountains, deserts, and parks. Anyone can enjoy it without special skills.</p>
+            <p>It strengthens your body, reduces stress, and lets you experience nature.</p>
         </div>
-
-        <button onclick="restart()">Restart</button>
     </section>
 
-</div>
+    <!-- MOUNTAIN -->
+    <section id="mountain" class="section" data-bg="media/Rugged.jpg">
+        <div class="content">
+            <h1>Mountain Hiking</h1>
+            <p>Mountain hiking offers breathtaking views and challenging climbs.</p>
+            <ul>
+                <li>High altitude</li>
+                <li>Steep climbs</li>
+                <li>Cooler air at the top</li>
+            </ul>
+        </div>
+    </section>
 
-<script src="script.js"></script>
+    <!-- CANYON -->
+    <section id="canyon" class="section" data-bg="media/canyon.jpg">
+        <div class="content">
+            <h1>Canyon Trails</h1>
+            <p>Canyon hiking offers deep pathways carved by nature over millions of years.</p>
+            <ul>
+                <li>Steep rocky walls</li>
+                <li>Cooler shaded paths</li>
+                <li>Famous in the Southwest U.S.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- FOREST -->
+    <section id="forest" class="section" data-bg="media/forest.jpg">
+        <div class="content">
+            <h1>Forest Trails</h1>
+            <p>Forests provide peaceful scenery filled with wildlife and plant life.</p>
+            <ul>
+                <li>Lush green surroundings</li>
+                <li>Soft dirt pathways</li>
+                <li>Great shade on sunny days</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- PREPARE SECTION -->
+    <section id="prepare" class="section" data-bg="media/forest.jpg">
+        <div class="content">
+            <h1>How to Prepare</h1>
+            <p>Research your trail, check weather, dress in layers, and pack essentials like water and snacks.</p>
+        </div>
+    </section>
+
+    <!-- DANGERS SECTION -->
+    <section id="dangers" class="section" data-bg="media/canyon.jpg">
+        <div class="content">
+            <h1>Dangers of Hiking</h1>
+            <p>Weather can change quickly, wildlife may appear, and dehydration can happen. Stay alert and follow safety rules.</p>
+        </div>
+    </section>
+
+    <!-- LOST SECTION -->
+    <section id="lost" class="section" data-bg="media/rugged.jpg">
+        <div class="content">
+            <h1>What to Do If You Get Lost</h1>
+            <p>Stay calm and use the STOP method: Stop, Think, Observe, Plan. Make yourself visible and signal for help.</p>
+        </div>
+    </section>
+
+    <!-- QUIZ A (Simple Quiz) -->
+    <section id="quizA" class="section" data-bg="media/earth.jpg">
+        <div class="content">
+            <h1>Quick Hiking Quiz</h1>
+            <p>Which trail is known for steep cliffs and deep stone walls?</p>
+
+            <button onclick="checkAnswerA('mountain')">Mountain</button>
+            <button onclick="checkAnswerA('canyon')">Canyon</button>
+            <button onclick="checkAnswerA('forest')">Forest</button>
+
+            <p id="resultA"></p>
+        </div>
+    </section>
+
+    <!-- QUIZ B (Map Quiz) -->
+    <section id="quizB" class="section quiz-map" data-bg="media/maptexture.jpg">
+        <div class="content">
+            <h1>Trail Map Quiz</h1>
+            <div id="quiz-container"></div>
+            <button id="restart-quiz">Retake Quiz</button>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
 </body>
 </html>
-      <button class="next-section">Next Section</button>
-    </div>
-  </section>
-
-  <!-- SECTION 2 -->
-  <section id="section2" class="section" data-bg="media/forest.jpg">
-    <div class="content">
-      <h1>How to Prepare</h1>
-      <p>Research your trail, check weather, dress in layers, and pack essentials like water, snacks, and first aid.</p>
-
-      <div class="summary-box">
-        <h3>Quick Summary</h3>
-        <ul>
-          <li>Research the trail</li>
-          <li>Dress for weather</li>
-          <li>Pack essentials</li>
-          <li>Tell someone your plan</li>
-          <li>Start with easy trails</li>
-        </ul>
-      </div>
-
-      <button class="next-section">Next Section</button>
-    </div>
-  </section>
-
-  <!-- SECTION 3 -->
-  <section id="section3" class="section" data-bg="media/canyon.jpg">
-    <div class="content">
-      <h1>Dangers of Hiking</h1>
-      <p>Weather can change quickly, wildlife may appear, and dehydration can occur. Watch your footing to avoid falls.</p>
-
-      <div class="summary-box">
-        <h3>Quick Summary</h3>
-        <ul>
-          <li>Weather can change fast</li>
-          <li>Watch for wildlife</li>
-          <li>Stay on the trail</li>
-          <li>Drink water</li>
-          <li>Watch your footing</li>
-        </ul>
-      </div>
-
-      <button class="next-section">Next Section</button>
-    </div>
-  </section>
-
-  <!-- SECTION 4 -->
-  <section id="section4" class="section" data-bg="media/rugged.jpg">
-    <div class="content">
-      <h1>What to Do If You Get Lost</h1>
-      <p>Stay calm, stop, use the STOP method: Stop, Think, Observe, Plan. Make yourself visible and signal for help.</p>
-
-      <div class="summary-box">
-        <h3>Quick Summary</h3>
-        <ul>
-          <li>Stay calm and stop walking</li>
-          <li>Use the STOP method</li>
-          <li>Retrace steps only if sure</li>
-          <li>Make yourself visible</li>
-          <li>Signal for help</li>
-        </ul>
-      </div>
-
-      <button class="next-section">Take Final Quiz</button>
-    </div>
-  </section>
-
-  <!-- FINAL MAP QUIZ -->
-  <section id="test" class="section quiz-map" data-bg="media/maptexture.jpg">
-    <div class="content">
-      <h1>Trail Map Quiz</h1>
-      <div id="quiz-container"></div>
-      <button id="restart-quiz">Retake Quiz</button>
-    </div>
-  </section>
-
-  <!-- Earth Zoom Animation -->
-  <div id="earth-transition"></div>
-
-  <script src="script.js"></script>
-</body>
-</html>
-      </div>
-      <button class="next-section">Next Section</button>
-    </div>
-  </section>
-
-  <!-- SECTION 4 -->
-  <section id="section4" class="section" data-bg="media/rugged.jpg">
-    <div class="content">
-      <h1>What to Do If You Get Lost</h1>
-      <p>Stay calm, stop, use the STOP method: Stop, Think, Observe, Plan. Make yourself visible and signal for help.</p>
-      <div class="summary-box">
-        <h3>Quick Summary</h3>
-        <ul>
-          <li>Stay calm and stop walking</li>
-          <li>Use the STOP method</li>
-          <li>Retrace steps only if sure</li>
-          <li>Make yourself visible</li>
-          <li>Signal for help</li>
-        </ul>
-      </div>
-      <button class="next-section">Take Final Quiz</button>
-    </div>
-  </section>
-
-  <!-- FINAL MAP QUIZ -->
-  <section id="test" class="section quiz-map" data-bg="media/maptexture.jpg">
-    <div class="content">
-      <h1>Trail Map Quiz</h1>
-      <div id="quiz-container"></div>
-      <button id="restart-quiz">Retake Quiz</button>
-    </div>
-  </section>
-
-  <!-- Earth Zoom Animation -->
-  <div id="earth-transition"></div>
-
-  <script src="script.js"></script>
-</body>
-</html>
-  </section>
-
-  <!-- SECTION 2 -->
-  <section id="section2" class="section" data-bg="media/forest.jpg">
-    <div class="content">
-      <h1>How to Prepare</h1>
-      <p>Research your trail for length, difficulty, and weather. Dress appropriately and layer your clothing. Pack water, snacks, first aid kit, and a light source.</p>
-      <p>Inform someone about your route and expected return. Start with easy trails to build experience.</p>
-      <div class="summary-box">
-        <h3>Quick Summary</h3>
-        <ul>
-          <li>Research the trail.</li>
-          <li>Dress for the weather.</li>
-          <li>Pack essentials.</li>
-          <li>Tell someone your plan.</li>
-          <li>Start with easy trails.</li>
-        </ul>
-      </div>
-      <button class="next-section">Next Section</button>
-    </div>
-  </section>
-
-  <!-- SECTION 3 -->
-  <section id="section3" class="section" data-bg="media/canyon.jpg">
-    <div class="content">
-      <h1>Dangers of Hiking</h1>
-      <p>Weather can change quickly, and wildlife encounters or dehydration may occur. Stay alert and follow safety rules.</p>
-      <p>Watch your footing to avoid slips and falls.</p>
-      <div class="summary-box">
-        <h3>Quick Summary</h3>
-        <ul>
-          <li>Weather can change fast.</li>
-          <li>Watch for wildlife.</li>
-          <li>Do not leave the trail.</li>
-          <li>Drink water to prevent dehydration.</li>
-          <li>Watch your footing.</li>
-        </ul>
-      </div>
-      <button class="next-section">Next Section</button>
-    </div>
-  </section>
-
-  <!-- SECTION 4 -->
-  <section id="section4" class="section" data-bg="media/rugged.jpg">
-    <div class="content">
-      <h1>What to Do If You Get Lost</h1>
-      <p>Stay calm, stop moving, and use the STOP method: Stop, Think, Observe, Plan. Make yourself visible and signal for help if needed.</p>
-      <div class="summary-box">
-        <h3>Quick Summary</h3>
-        <ul>
-          <li>Stay calm and stop walking.</li>
-          <li>Use the STOP method.</li>
-          <li>Only retrace steps if certain.</li>
-          <li>Make yourself visible.</li>
-          <li>Signal for help if necessary.</li>
-        </ul>
-      </div>
-      <button class="next-section">Take Final Quiz</button>
-    </div>
-  </section>
-
-  <!-- FINAL MAP QUIZ -->
-  <section id="test" class="section quiz-map" data-bg="media/maptexture.jpg">
-    <div class="content">
-      <h1>Trail Map Quiz</h1>
-      <div id="quiz-container"></div>
-      <button id="restart-quiz">Retake Quiz</button>
-    </div>
-  </section>
-
-  <!-- Earth Zoom Transition -->
-  <div id="earth-transition"></div>
-
-  <script src="script.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TrailTrek Adventures</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-  <nav class="navbar">
-    <a href="#section1">Home</a>
-    <a href="#section2">Prepare</a>
-    <a href="#section3">Dangers</a>
-    <a href="#section4">Lost</a>
-    <a href="#test">Trail Map Quiz</a>
-  </nav>
-
-  <!-- SECTION 1 -->
-  <section id="section1" class="section active" data-bg="media/waterfall.jpg">
-    <div class="content">
-      <h1>Introduction to Hiking</h1>
-      <p>Hiking is walking through forests, mountains, deserts, and parks. Anyone can enjoy it without special skills.</p>
-      <p>It strengthens your legs, improves breathing, reduces stress, and allows you to connect with nature in a meaningful way.</p>
-
-      <div class="summary-box">
-        <h3>Quick Summary</h3>
-        <ul>
-          <li>Walking in nature</li>
-          <li>Improves health and reduces stress</li>
-          <li>Anyone can start with basic gear</li>
-          <li>Simple outdoor activity</li>
-          <li>Can be short or long distance</li>
-        </ul>
-      </div>
-
-      <button class="next-section">Next Section</button>
-    </div>
-  </section>
-
-  <!-- SECTION 2 -->
-  <section id="section2" class="section" data-bg="media/forest.jpg">
-    <div class="content">
-      <h1>How to Prepare</h1>
-      <p>Good preparation includes researching your trail, checking weather, wearing layers, and carrying important items such as water, snacks, a phone, and basic first aid.</p>
-
-      <div class="summary-box">
-        <h3>Quick Summary</h3>
-        <ul>
-          <li>Research the trail</li>
-          <li>Dress for weather</li>
-          <li>Carry essentials</li>
-          <li>Tell someone your plan</li>
-          <li>Start with easy trails</li>
-        </ul>
-      </div>
-
-      <button class="next-section">Next Section</button>
-    </div>
-  </section>
-
-  <!-- SECTION 3 -->
-  <section id="section3" class="section" data-bg="media/canyon.jpg">
-    <div class="content">
-      <h1>Dangers of Hiking</h1>
-      <p>Nature can be unpredictable. Weather changes suddenly, animals may appear, dehydration can sneak up on you, and injuries like twisted ankles can occur if you're not careful.</p>
-
-      <div class="summary-box">
-        <h3>Quick Summary</h3>
-        <ul>
-          <li>Weather changes quickly</li>
-          <li>Watch for wildlife</li>
-          <li>Stay hydrated</li>
-          <li>Stay on the trail</li>
-          <li>Be aware of surroundings</li>
-        </ul>
-      </div>
-
-      <button class="next-section">Next Section</button>
-    </div>
-  </section>
-
-  <!-- SECTION 4 -->
-  <section id="section4" class="section" data-bg="media/rugged.jpg">
-    <div class="content">
-      <h1>What to Do If You Get Lost</h1>
-      <p>If you find yourself lost, follow the STOP method: Stop, Think, Observe, and Plan. Staying calm and staying in one place usually increases your chance of being found quickly.</p>
-
-      <div class="summary-box">
-        <h3>Quick Summary</h3>
-        <ul>
-          <li>Stay calm</li>
-          <li>STOP method</li>
-          <li>Retrace steps only if safe</li>
-          <li>Make yourself visible</li>
-          <li>Signal for help</li>
-        </ul>
-      </div>
-
-      <button class="next-section">Take Final Quiz</button>
-    </div>
-  </section>
-
-  <!-- FINAL MAP QUIZ -->
-  <section id="test" class="section quiz-map" data-bg="media/maptexture.jpg">
-    <div class="content">
-      <h1>Trail Map Quiz</h1>
-      <div id="quiz-container"></div>
-      <button id="restart-quiz">Retake Quiz</button>
-    </div>
-  </section>
-
-  <!-- Earth Zoom Animation -->
-  <div id="earth-transition"></div>
-
-  <script src="script.js"></script>
-</body>
-</html>
-<script src="script.js"></script>
