@@ -1,99 +1,161 @@
-function nextSection(num) {
-    let current = document.querySelector(".section:not(.hidden)");
-    let next = document.getElementById("section" + num);
+// script.js
+document.addEventListener("DOMContentLoaded", () => {
+  // Apply background images from data-bg attributes
+  document.querySelectorAll(".section").forEach(sec => {
+    const bg = sec.dataset.bg;
+    if (bg) sec.style.backgroundImage = `url('${bg}')`;
+  });
 
-    current.classList.add("hidden");
-    next.classList.remove("hidden");
-}
-
-function checkAnswer(ans) {
-    let result = document.getElementById("result");
-
-    if (ans === "canyon") {
-        result.innerHTML = "Correct! Canyon trails are known for steep cliffs.";
-        result.style.color = "lightgreen";
+  // --- Quiz A (Simple 3-button quiz) ---
+  window.checkAnswerA = function(answer) {
+    const resultEl = document.getElementById("resultA");
+    if (!resultEl) return;
+    if (answer === "canyon") {
+      resultEl.textContent = "Correct! Canyon trails are known for steep cliffs.";
+      resultEl.style.color = "green";
     } else {
-        result.innerHTML = "Incorrect. Try again!";
-        result.style.color = "red";
+      resultEl.textContent = "Incorrect. Try again!";
+      resultEl.style.color = "red";
     }
-}
-/* QUIZ */
-function checkQuiz(q, ans) {
-    let result = document.getElementById("result");
+  };
 
-    if (q === 1 && ans === "forest") result.innerText = "Correct!";
-    else if (q === 2 && ans === "mountain") result.innerText = "Correct!";
-    else result.innerText = "Incorrect!";
-}
+  // --- Quiz B (Map-style quiz / multi-question) ---
+  // Simple quiz data (you can edit/extend this)
+  const quizData = [
+    {
+      q: "Which hike has dense trees?",
+      o: ["Forest", "Canyon", "Mountain"],
+      a: 0
+    },
+    {
+      q: "Which hike is rocky and steep?",
+      o: ["Forest", "Canyon", "Mountain"],
+      a: 2
+    },
+    {
+      q: "Which area is known for deep stone walls and cliffs?",
+      o: ["Forest", "Canyon", "Mountain"],
+      a: 1
+    }
+  ];
 
-function restart() {
-    goToSection(0);
-}
-    const div = document.createElement("div");
-    div.className = "quiz-question";
+  const quizContainer = document.getElementById("quiz-container");
+  const restartBtn = document.getElementById("restart-quiz");
 
-    div.innerHTML =
-      `<p>${i+1}. ${item.q}</p>` +
-      item.o.map((opt,idx)=>
-        `<button class='choice' data-q='${i}' data-idx='${idx}'>${opt}</button>`
-      ).join("");
+  // Render the quiz into #quiz-container
+  function renderQuiz() {
+    if (!quizContainer) return;
+    quizContainer.innerHTML = ""; // clear
+    const scoreBox = document.createElement("div");
+    scoreBox.id = "quiz-score";
+    scoreBox.style.margin = "12px 0";
+    scoreBox.textContent = "Score: 0 / " + quizData.length;
+    quizContainer.appendChild(scoreBox);
 
-    quizContainer.appendChild(div);
-  });
+    quizData.forEach((item, i) => {
+      const qWrap = document.createElement("div");
+      qWrap.className = "quiz-question";
+      qWrap.style.marginBottom = "14px";
 
-  setupQuizButtons();
-}
+      const p = document.createElement("p");
+      p.textContent = (i + 1) + ". " + item.q;
+      qWrap.appendChild(p);
 
-function setupQuizButtons() {
-  quizContainer.querySelectorAll(".choice").forEach(b => {
-    b.onclick = () => {
-      const q = quizData[b.dataset.q];
-      const correct = q.a == b.dataset.idx;
+      const answersDiv = document.createElement("div");
+      answersDiv.className = "answers";
+      answersDiv.style.display = "flex";
+      answersDiv.style.gap = "8px";
+      answersDiv.style.flexWrap = "wrap";
 
-      b.classList.add(correct ? "correct" : "incorrect");
-
-      quizContainer.scrollBy({
-        left: window.innerWidth,
-        behavior: "smooth"
+      item.o.forEach((opt, idx) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "choice";
+        b.dataset.q = i;
+        b.dataset.idx = idx;
+        b.textContent = opt;
+        b.style.padding = "8px 12px";
+        b.style.cursor = "pointer";
+        answersDiv.appendChild(b);
       });
-    };
+
+      qWrap.appendChild(answersDiv);
+      quizContainer.appendChild(qWrap);
+    });
+
+    // attach handlers
+    setupQuizButtons();
+    // ensure score reset
+    updateScore(0);
+  }
+
+  // Track answered questions to avoid double counting
+  const answered = new Array(quizData.length).fill(false);
+  const corrects = new Array(quizData.length).fill(false);
+
+  function setupQuizButtons() {
+    if (!quizContainer) return;
+    quizContainer.querySelectorAll(".choice").forEach(btn => {
+      btn.onclick = () => {
+        const qIdx = Number(btn.dataset.q);
+        const idx = Number(btn.dataset.idx);
+        // ignore if question already answered
+        if (answered[qIdx]) return;
+
+        const isCorrect = quizData[qIdx].a === idx;
+        answered[qIdx] = true;
+        corrects[qIdx] = isCorrect;
+
+        // visual feedback
+        btn.classList.add(isCorrect ? "correct" : "incorrect");
+        btn.disabled = true;
+
+        // disable sibling buttons for same question
+        const siblings = btn.parentElement.querySelectorAll("button");
+        siblings.forEach(s => s.disabled = true);
+
+        // update score display
+        const totalCorrect = corrects.reduce((acc, v) => acc + (v ? 1 : 0), 0);
+        updateScore(totalCorrect);
+
+        // optional: scroll to next question (if you have wide layout)
+        // quizContainer.scrollBy({ left: window.innerWidth, behavior: "smooth" });
+      };
+    });
+  }
+
+  function updateScore(n) {
+    const scoreBox = document.getElementById("quiz-score");
+    if (scoreBox) scoreBox.textContent = `Score: ${n} / ${quizData.length}`;
+  }
+
+  function resetQuizState() {
+    for (let i = 0; i < quizData.length; i++) {
+      answered[i] = false;
+      corrects[i] = false;
+    }
+  }
+
+  // Restart behavior
+  if (restartBtn) {
+    restartBtn.addEventListener("click", () => {
+      resetQuizState();
+      renderQuiz();
+    });
+  }
+
+  // Initial render
+  resetQuizState();
+  renderQuiz();
+
+  // Optional: smooth behavior for nav links (nice on single-page)
+  document.querySelectorAll(".navbar a[href^='#']").forEach(link => {
+    link.addEventListener("click", e => {
+      const target = document.querySelector(link.getAttribute("href"));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    });
   });
-}
-
-document.getElementById("restart-quiz").onclick = renderQuiz;
-
-renderQuiz();
-    const div = document.createElement("div");
-    div.className = "quiz-question";
-
-    div.innerHTML =
-      `<p>${i+1}. ${item.q}</p>` +
-      item.o.map((opt,idx)=>
-        `<button class='choice' data-q='${i}' data-idx='${idx}'>${opt}</button>`
-      ).join("");
-
-    quizContainer.appendChild(div);
-  });
-
-  setupQuizButtons();
-}
-
-function setupQuizButtons() {
-  quizContainer.querySelectorAll(".choice").forEach(b => {
-    b.onclick = () => {
-      const q = quizData[b.dataset.q];
-      const correct = q.a == b.dataset.idx;
-
-      b.classList.add(correct ? "correct" : "incorrect");
-
-      quizContainer.scrollBy({
-        left: window.innerWidth,
-        behavior: "smooth"
-      });
-    };
-  });
-}
-
-document.getElementById("restart-quiz").onclick = renderQuiz;
-
-renderQuiz();
+});
