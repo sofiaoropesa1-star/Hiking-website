@@ -1,13 +1,15 @@
+/* ===== GENERAL PAGE STYLING ===== */
 body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    overflow: hidden;
+    overflow-x: hidden; /* prevents horizontal scroll */
+    background: #000;
 }
 
-/* FULLSCREEN SECTIONS */
+/* ===== FULLSCREEN SECTIONS ===== */
 .section {
-    position: absolute;
+    position: absolute;  /* full screen overlay */
     top: 0;
     left: 0;
     width: 100vw;
@@ -20,49 +22,110 @@ body {
     align-items: center;
     color: white;
     text-shadow: 0 0 10px black;
-    transition: opacity 1s ease, transform 1s ease;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    z-index: 10;
 }
 
+/* hidden sections */
 .hidden {
     opacity: 0;
     pointer-events: none;
     transform: scale(1.2);
 }
 
+/* ===== NAVIGATION BAR ===== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    z-index: 30;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 12px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #00ffcc;
+}
+
+/* ===== BUTTONS ===== */
 button {
     padding: 10px 18px;
     margin-top: 20px;
     font-size: 18px;
     cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    transition: background 0.3s ease;
 }
 
-.choice.correct { background: green !important; }
-.choice.incorrect { background: red !important; }
+button:hover {
+    background: rgba(0,0,0,0.8);
+}
+
+/* ===== QUIZ STYLING ===== */
+.choice.correct {
+    background: green !important;
+    color: white;
+}
+
+.choice.incorrect {
+    background: red !important;
+    color: white;
+}
 
 #quiz-container {
     display: flex;
     overflow-x: auto;
     scroll-behavior: smooth;
     width: 100%;
+    padding: 10px 0;
 }
 
 .quiz-question {
     min-width: 100%;
     padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
-.summary-box,
 #quiz-score {
-    margin-top: 1em;
+    margin: 12px 0;
     background: rgba(0,0,0,0.3);
     padding: 1em;
     border-radius: 8px;
 }
 
+/* ===== SUMMARY BOX ===== */
+.summary-box {
+    margin-top: 1em;
+    background: rgba(0,0,0,0.3);
+    padding: 1em;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+}
+
+/* ===== EARTH TRANSITION OVERLAY ===== */
 #earth-transition {
     position: fixed;
-    top:0; left:0;
-    width:100%; height:100vh;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
     background:url('media/earth.jpg') center/cover no-repeat;
     transform: scale(0);
     opacity:0;
@@ -76,6 +139,24 @@ button {
     opacity: 1;
 }
 
+/* ===== MAP QUIZ BACKGROUND ===== */
 .quiz-map {
     background: url('media/maptexture.jpg') center/cover no-repeat;
+}
+
+/* ===== MEDIA QUERIES ===== */
+@media screen and (max-width: 768px) {
+    .summary-box {
+        width: 90%;
+    }
+
+    .navbar a {
+        margin: 0 6px;
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 8px 14px;
+    }
 }
