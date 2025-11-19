@@ -1,131 +1,140 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Set background images from data-bg
-    document.querySelectorAll(".section").forEach(sec => {
-        if (sec.dataset.bg) sec.style.backgroundImage = `url('${sec.dataset.bg}')`;
+  // Set section backgrounds
+  document.querySelectorAll(".section").forEach(sec => {
+    const bg = sec.dataset.bg;
+    if (bg) sec.style.backgroundImage = `url('${bg}')`;
+  });
+
+  // --- Quiz A ---
+  window.checkAnswerA = function(answer) {
+    const resultEl = document.getElementById("resultA");
+    if (!resultEl) return;
+    if (answer === "canyon") {
+      resultEl.textContent = "Correct! Canyon trails are known for steep cliffs.";
+      resultEl.style.color = "green";
+    } else {
+      resultEl.textContent = "Incorrect. Try again!";
+      resultEl.style.color = "red";
+    }
+  };
+
+  // --- Quiz B ---
+  const quizData = [
+    { q: "Which hike has dense trees?", o: ["Forest", "Canyon", "Mountain"], a: 0 },
+    { q: "Which hike is rocky and steep?", o: ["Forest", "Canyon", "Mountain"], a: 2 },
+    { q: "Which area is known for deep stone walls and cliffs?", o: ["Forest", "Canyon", "Mountain"], a: 1 },
+    { q: "Which trail is best for beginners?", o: ["Forest", "Mountain", "Canyon"], a: 0 },
+    { q: "Which hike may require acclimatization?", o: ["Forest", "Mountain", "Canyon"], a: 1 },
+    { q: "Which trail often has shade from tall trees?", o: ["Canyon", "Forest", "Mountain"], a: 1 }
+  ];
+
+  const quizContainer = document.getElementById("quiz-container");
+  const restartBtn = document.getElementById("restart-quiz");
+
+  let currentQuestion = 0;
+  const answered = new Array(quizData.length).fill(false);
+  const corrects = new Array(quizData.length).fill(false);
+
+  function renderQuestion(idx) {
+    if (!quizContainer) return;
+    quizContainer.innerHTML = "";
+
+    const scoreBox = document.createElement("div");
+    scoreBox.id = "quiz-score";
+    scoreBox.textContent = `Score: ${corrects.filter(c => c).length} / ${quizData.length}`;
+    quizContainer.appendChild(scoreBox);
+
+    const item = quizData[idx];
+    const qWrap = document.createElement("div");
+    qWrap.className = "quiz-question";
+
+    const p = document.createElement("p");
+    p.textContent = `${idx + 1}. ${item.q}`;
+    qWrap.appendChild(p);
+
+    const answersDiv = document.createElement("div");
+    answersDiv.className = "answers";
+    answersDiv.style.display = "flex";
+    answersDiv.style.gap = "8px";
+
+    item.o.forEach((opt, i) => {
+      const b = document.createElement("button");
+      b.textContent = opt;
+      b.className = "choice";
+      b.disabled = answered[idx];
+      if (answered[idx] && corrects[idx] && i === item.a) b.classList.add("correct");
+      answersDiv.appendChild(b);
+
+      b.addEventListener("click", () => {
+        if (answered[idx]) return;
+        answered[idx] = true;
+        corrects[idx] = i === item.a;
+
+        b.classList.add(corrects[idx] ? "correct" : "incorrect");
+        Array.from(answersDiv.children).forEach(sib => sib.disabled = true);
+        updateScore();
+      });
     });
 
-    // --- Section Navigation ---
-    window.nextSection = function(id) {
-        document.querySelectorAll(".section").forEach(s => s.classList.add("hidden"));
-        const next = document.getElementById(id);
-        if (next) next.classList.remove("hidden");
-    };
+    qWrap.appendChild(answersDiv);
+    quizContainer.appendChild(qWrap);
 
-    window.preveousSection = function(id) {
-        document.querySelectorAll(".section").forEach(s => s.classList.add("hidden"));
-        const prev = document.getElementById(id);
-        if (prev) prev.classList.remove("hidden");
-    };
-
-    // --- Smooth Scroll for navbar ---
-    document.querySelectorAll(".navbar a[href^='#']").forEach(link => {
-        link.addEventListener("click", e => {
-            const target = document.querySelector(link.getAttribute("href"));
-            if (target) {
-                e.preventDefault();
-                target.scrollIntoView({ behavior: "smooth" });
-            }
-        });
+    // Next button
+    const nextBtn = document.createElement("button");
+    nextBtn.textContent = "Next Question";
+    nextBtn.addEventListener("click", () => {
+      if (currentQuestion < quizData.length - 1) {
+        currentQuestion++;
+        renderQuestion(currentQuestion);
+      }
     });
+    quizContainer.appendChild(nextBtn);
 
-    // --- Quiz A ---
-    window.checkAnswerA = function(answer) {
-        const resultEl = document.getElementById("resultA");
-        if (!resultEl) return;
-        if (answer === "canyon") {
-            resultEl.textContent = "Correct! Canyon trails are known for steep cliffs.";
-            resultEl.style.color = "green";
-        } else {
-            resultEl.textContent = "Incorrect. Try again!";
-            resultEl.style.color = "red";
-        }
-    };
+    // Previous button
+    const preveousBtn = document.createElement("button");
+    preveousBtn.textContent = "Preveous Section";
+    preveousBtn.style.marginLeft = "10px";
+    preveousBtn.addEventListener("click", () => {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        renderQuestion(currentQuestion);
+      }
+    });
+    quizContainer.appendChild(preveousBtn);
+  }
 
-    // --- Quiz B ---
-    const quizData = [
-        {q:"Which hike has dense trees?", o:["Forest","Canyon","Mountain"], a:0},
-        {q:"Which hike is rocky and steep?", o:["Forest","Canyon","Mountain"], a:2},
-        {q:"Which area is known for deep stone walls and cliffs?", o:["Forest","Canyon","Mountain"], a:1},
-        {q:"Which hike has soft dirt paths?", o:["Mountain","Canyon","Forest"], a:2},
-        {q:"Which trail is high altitude?", o:["Mountain","Forest","Canyon"], a:0},
-        {q:"Which area is famous in Southwest U.S.?", o:["Forest","Canyon","Mountain"], a:1}
-    ];
+  function updateScore() {
+    const scoreBox = document.getElementById("quiz-score");
+    if (scoreBox) scoreBox.textContent = `Score: ${corrects.filter(c => c).length} / ${quizData.length}`;
+  }
 
-    const quizContainer = document.getElementById("quiz-container");
-    const restartBtn = document.getElementById("restart-quiz");
-    const answered = new Array(quizData.length).fill(false);
-    const corrects = new Array(quizData.length).fill(false);
-
-    function renderQuiz() {
-        if (!quizContainer) return;
-        quizContainer.innerHTML = "";
-        const scoreBox = document.createElement("div");
-        scoreBox.id = "quiz-score";
-        scoreBox.textContent = `Score: 0 / ${quizData.length}`;
-        quizContainer.appendChild(scoreBox);
-
-        quizData.forEach((item,i)=>{
-            const qWrap = document.createElement("div");
-            qWrap.className="quiz-question";
-            const p = document.createElement("p");
-            p.textContent = (i+1)+". "+item.q;
-            qWrap.appendChild(p);
-
-            const answersDiv = document.createElement("div");
-            answersDiv.style.display="flex";
-            answersDiv.style.gap="8px";
-            item.o.forEach((opt,idx)=>{
-                const b=document.createElement("button");
-                b.className="choice";
-                b.dataset.q=i;
-                b.dataset.idx=idx;
-                b.textContent=opt;
-                answersDiv.appendChild(b);
-            });
-            qWrap.appendChild(answersDiv);
-            quizContainer.appendChild(qWrap);
-        });
-        setupQuizButtons();
-        updateScore(0);
+  function resetQuizState() {
+    currentQuestion = 0;
+    for (let i = 0; i < quizData.length; i++) {
+      answered[i] = false;
+      corrects[i] = false;
     }
+  }
 
-    function setupQuizButtons() {
-        quizContainer.querySelectorAll(".choice").forEach(btn=>{
-            btn.onclick=()=>{
-                const qIdx=Number(btn.dataset.q);
-                const idx=Number(btn.dataset.idx);
-                if(answered[qIdx]) return;
-                const isCorrect = quizData[qIdx].a === idx;
-                answered[qIdx]=true;
-                corrects[qIdx]=isCorrect;
-                btn.classList.add(isCorrect?"correct":"incorrect");
-                btn.disabled=true;
-                // disable siblings
-                btn.parentElement.querySelectorAll("button").forEach(s=>s.disabled=true);
-                updateScore(corrects.filter(c=>c).length);
-            }
-        });
-    }
+  if (restartBtn) {
+    restartBtn.addEventListener("click", () => {
+      resetQuizState();
+      renderQuestion(currentQuestion);
+    });
+  }
 
-    function updateScore(n) {
-        const scoreBox = document.getElementById("quiz-score");
-        if(scoreBox) scoreBox.textContent = `Score: ${n} / ${quizData.length}`;
-    }
+  // Initial render
+  resetQuizState();
+  renderQuestion(currentQuestion);
 
-    function resetQuizState() {
-        for(let i=0;i<quizData.length;i++){
-            answered[i]=false;
-            corrects[i]=false;
-        }
-    }
-
-    if(restartBtn) {
-        restartBtn.addEventListener("click", ()=>{
-            resetQuizState();
-            renderQuiz();
-        });
-    }
-
-    resetQuizState();
-    renderQuiz();
+  // Smooth nav links
+  document.querySelectorAll(".navbar a[href^='#']").forEach(link => {
+    link.addEventListener("click", e => {
+      const target = document.querySelector(link.getAttribute("href"));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  });
 });
