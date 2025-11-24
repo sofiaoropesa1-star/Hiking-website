@@ -1,151 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrailTrek Adventures</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TrailTrek Adventures</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-    <!-- NAVIGATION BAR -->
-    <nav class="navbar">
-        <a href="#intro">Home</a>
-        <a href="#mountain">Mountain</a>
-        <a href="#canyon">Canyon</a>
-        <a href="#forest">Forest</a>
-        <a href="#prepare">Prepare</a>
-        <a href="#dangers">Dangers</a>
-        <a href="#lost">Lost</a>
-        <a href="#quizA">Quiz</a>
-        <a href="#quizB">Map Quiz</a>
-    </nav>
+  <!-- HOME BUTTON (top-left) -->
+  <button id="homeBtn" class="home-btn" aria-label="Home">🏠</button>
 
-    <!-- INTRO SECTION -->
+  <!-- NAVBAR (emoji icons) -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a data-target="intro">🏠 Home</a>
+    <a data-target="mountain">⛰️ Mountain</a>
+    <a data-target="canyon">🪨 Canyon</a>
+    <a data-target="forest">🌲 Forest</a>
+    <a data-target="prepare">🎒 Prepare</a>
+    <a data-target="dangers">⚠️ Dangers</a>
+    <a data-target="lost">🧭 Lost</a>
+    <a data-target="quizA">📝 Quick Quiz</a>
+    <a data-target="quizB">🗺️ Final Quiz</a>
+  </nav>
+
+  <!-- SECTIONS -->
+  <main id="site-main">
     <section id="intro" class="section active" data-bg="media/waterfall.jpg">
-        <div class="content">
-            <h1>Introduction to Hiking</h1>
-            <p>Hiking means walking through forests, mountains, deserts, and parks. Anyone can enjoy it without special skills.</p>
-            <p>It strengthens your body, improves breathing, reduces stress, and lets you experience nature.</p>
-            <p>Always wear proper footwear and carry essentials like water and a first aid kit.</p>
-            <button class="nextBtn" onclick="nextSection('mountain')">Next Section</button>
+      <div class="content">
+        <h1>Introduction to Hiking</h1>
+        <p>Hiking is exploring nature on foot: forests, mountains, canyons, and more. It builds fitness and reduces stress.</p>
+        <p>Begin with short trails, wear good shoes, and respect the environment.</p>
+        <div class="controls">
+          <button class="nav-btn" data-next="mountain">Next</button>
         </div>
+      </div>
     </section>
 
-    <!-- MOUNTAIN -->
     <section id="mountain" class="section" data-bg="media/rugged.jpg">
-        <div class="content">
-            <h1>Mountain Hiking</h1>
-            <p>Mountain hiking offers breathtaking views and challenging climbs.</p>
-            <ul>
-                <li>High altitude</li>
-                <li>Steep climbs</li>
-                <li>Cooler air at the top</li>
-                <li>Requires good stamina</li>
-            </ul>
-            <button class="preveousBtn" onclick="prevSection('intro')">Preveous Section</button>
-            <button class="nextBtn" onclick="nextSection('canyon')">Next Section</button>
+      <div class="content">
+        <h1>Mountain Hiking</h1>
+        <p>Expect steep climbs, rocky terrain, and cooler temps at elevation. Prepare for quick weather changes.</p>
+        <ul>
+          <li>Layer clothing</li>
+          <li>Bring navigation & extra water</li>
+          <li>Wear supportive boots</li>
+        </ul>
+        <div class="controls">
+          <button class="nav-btn" data-prev="intro">Preveous</button>
+          <button class="nav-btn" data-next="canyon">Next</button>
         </div>
+      </div>
     </section>
 
-    <!-- CANYON -->
     <section id="canyon" class="section" data-bg="media/canyon.jpg">
-        <div class="content">
-            <h1>Canyon Trails</h1>
-            <p>Canyon hiking offers deep pathways carved by nature over millions of years.</p>
-            <ul>
-                <li>Steep rocky walls</li>
-                <li>Cool shaded paths</li>
-                <li>Famous in the Southwest U.S.</li>
-                <li>Watch for loose rocks</li>
-            </ul>
-            <button class="preveousBtn" onclick="prevSection('mountain')">Preveous Section</button>
-            <button class="nextBtn" onclick="nextSection('forest')">Next Section</button>
+      <div class="content">
+        <h1>Canyon Trails</h1>
+        <p>Deep walls and narrow paths — canyons provide shade but may be prone to flash floods. Check forecasts.</p>
+        <ul>
+          <li>Watch footing on loose rock</li>
+          <li>Carry sun protection for exposed areas</li>
+          <li>Avoid canyons during heavy rain</li>
+        </ul>
+        <div class="controls">
+          <button class="nav-btn" data-prev="mountain">Preveous</button>
+          <button class="nav-btn" data-next="forest">Next</button>
         </div>
+      </div>
     </section>
 
-    <!-- FOREST -->
     <section id="forest" class="section" data-bg="media/forest.jpg">
-        <div class="content">
-            <h1>Forest Trails</h1>
-            <p>Forests provide peaceful scenery filled with wildlife and plant life.</p>
-            <ul>
-                <li>Lush green surroundings</li>
-                <li>Soft dirt pathways</li>
-                <li>Great shade on sunny days</li>
-                <li>Listen for wildlife sounds</li>
-            </ul>
-            <button class="preveousBtn" onclick="prevSection('canyon')">Preveous Section</button>
-            <button class="nextBtn" onclick="nextSection('prepare')">Next Section</button>
+      <div class="content">
+        <h1>Forest Trails</h1>
+        <p>Shady, peaceful, and full of life. Great for beginners and wildlife spotting.</p>
+        <ul>
+          <li>Bring insect repellent</li>
+          <li>Stay on marked trails</li>
+          <li>Carry binoculars for birds</li>
+        </ul>
+        <div class="controls">
+          <button class="nav-btn" data-prev="canyon">Preveous</button>
+          <button class="nav-btn" data-next="prepare">Next</button>
         </div>
+      </div>
     </section>
 
-    <!-- PREPARE -->
     <section id="prepare" class="section" data-bg="media/forest.jpg">
-        <div class="content">
-            <h1>How to Prepare</h1>
-            <p>Research your trail, check the weather, wear layers, and pack essentials like water, snacks, and a first aid kit.</p>
-            <ul>
-                <li>Inform someone about your route</li>
-                <li>Start with easy trails</li>
-                <li>Check your equipment</li>
-            </ul>
-            <button class="preveousBtn" onclick="prevSection('forest')">Preveous Section</button>
-            <button class="nextBtn" onclick="nextSection('dangers')">Next Section</button>
+      <div class="content">
+        <h1>How to Prepare</h1>
+        <p>Research, pack essentials, and let someone know your plan.</p>
+        <ul>
+          <li>Map, phone, first-aid</li>
+          <li>Water, snacks, sun protection</li>
+          <li>Layer clothing and rain gear</li>
+        </ul>
+        <div class="controls">
+          <button class="nav-btn" data-prev="forest">Preveous</button>
+          <button class="nav-btn" data-next="dangers">Next</button>
         </div>
+      </div>
     </section>
 
-    <!-- DANGERS -->
     <section id="dangers" class="section" data-bg="media/canyon.jpg">
-        <div class="content">
-            <h1>Dangers of Hiking</h1>
-            <p>Weather can change quickly, wildlife may appear, and dehydration can happen. Stay alert and follow safety rules.</p>
-            <ul>
-                <li>Check weather forecast</li>
-                <li>Carry enough water</li>
-                <li>Stay on marked trails</li>
-            </ul>
-            <button class="preveousBtn" onclick="prevSection('prepare')">Preveous Section</button>
-            <button class="nextBtn" onclick="nextSection('lost')">Next Section</button>
+      <div class="content">
+        <h1>Dangers of Hiking</h1>
+        <p>Know the risks: weather, wildlife, dehydration, injuries, and lost trails.</p>
+        <ul>
+          <li>Carry first-aid</li>
+          <li>Watch the weather</li>
+          <li>Bring extra water and food</li>
+        </ul>
+        <div class="controls">
+          <button class="nav-btn" data-prev="prepare">Preveous</button>
+          <button class="nav-btn" data-next="lost">Next</button>
         </div>
+      </div>
     </section>
 
-    <!-- LOST -->
     <section id="lost" class="section" data-bg="media/rugged.jpg">
-        <div class="content">
-            <h1>What to Do If You Get Lost</h1>
-            <p>Stay calm and use the STOP method: Stop, Think, Observe, Plan. Make yourself visible and signal for help.</p>
-            <button class="preveousBtn" onclick="prevSection('dangers')">Preveous Section</button>
-            <button class="nextBtn" onclick="nextSection('quizA')">Next Section</button>
+      <div class="content">
+        <h1>What to Do If You Get Lost</h1>
+        <p>Use STOP: Stop, Think, Observe, Plan. Stay visible and conserve resources.</p>
+        <ul>
+          <li>Use whistle or mirror to signal</li>
+          <li>Stay put if rescue is likely</li>
+          <li>Only retrace steps if sure</li>
+        </ul>
+        <div class="controls">
+          <button class="nav-btn" data-prev="dangers">Preveous</button>
+          <button class="nav-btn" data-next="quizA">Next</button>
         </div>
+      </div>
     </section>
 
-    <!-- QUIZ A -->
+    <!-- QUICK QUIZ A -->
     <section id="quizA" class="section" data-bg="media/earth.jpg">
-        <div class="content">
-            <h1>Quick Hiking Quiz</h1>
-            <p>Which trail is known for steep cliffs and deep stone walls?</p>
-            <button onclick="checkAnswerA('mountain')">Mountain</button>
-            <button onclick="checkAnswerA('canyon')">Canyon</button>
-            <button onclick="checkAnswerA('forest')">Forest</button>
-            <p id="resultA"></p>
-            <button class="preveousBtn" onclick="prevSection('lost')">Preveous Section</button>
-            <button class="nextBtn" onclick="nextSection('quizB')">Next Section</button>
+      <div class="content">
+        <h1>Quick Quiz</h1>
+        <p>Which trail is known for steep cliffs and deep stone walls?</p>
+        <div class="quiz-a-answers">
+          <button class="choice-btn" data-answer="mountain">Mountain</button>
+          <button class="choice-btn" data-answer="canyon">Canyon</button>
+          <button class="choice-btn" data-answer="forest">Forest</button>
         </div>
+        <p id="resultA" class="result-text" aria-live="polite"></p>
+
+        <div class="controls">
+          <button class="nav-btn" data-prev="lost">Preveous</button>
+          <button class="nav-btn" data-next="quizB">Next</button>
+        </div>
+      </div>
     </section>
 
-    <!-- QUIZ B -->
+    <!-- FINAL QUIZ (Quiz B) -->
     <section id="quizB" class="section quiz-map" data-bg="media/maptexture.jpg">
-        <div class="content">
-            <h1>Trail Map Quiz</h1>
-            <div id="quiz-container"></div>
-            <button id="restart-quiz">Retake Quiz</button>
-            <button class="preveousBtn" onclick="prevSection('quizA')">Preveous Section</button>
+      <div class="content">
+        <h1>Final Quiz — Trail Map</h1>
+
+        <div id="final-quiz">
+          <!-- injected by JS: question, answers, controls -->
         </div>
+
+        <div class="controls">
+          <button id="restart-quiz" class="nav-btn">Retake Quiz</button>
+          <button class="nav-btn" data-prev="quizA">Preveous</button>
+        </div>
+      </div>
     </section>
 
-    <div id="earth-transition"></div>
+  </main>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
