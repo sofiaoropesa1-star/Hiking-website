@@ -1,152 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrailTrek Adventures</title>
-
-    <!-- ICON LIBRARY -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-    <!-- STYLES -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TrailTrek — Hiking Guide</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-    <!-- TOP NAVIGATION BAR -->
-    <nav class="navbar">
-        <div class="nav-left">
-            <button class="homeBtn" onclick="goToSection('intro')">
-                <i class="fa-solid fa-house"></i>
-            </button>
+  <!-- Earth overlay for zoom animation -->
+  <div id="earth-overlay" aria-hidden="true"></div>
+
+  <!-- Sections container -->
+  <main id="slides">
+    <section class="slide active" data-bg="media/forest.jpg" data-index="0">
+      <div class="card">
+        <h1>Introduction to Hiking</h1>
+        <p>Hiking is walking through natural places such as forests, mountains and deserts. It helps fitness, reduces stress, and connects you with nature.</p>
+
+        <div class="summary">
+          <h3>Quick summary</h3>
+          <ul>
+            <li>Good exercise</li>
+            <li>Low cost to start</li>
+            <li>Bring water and good shoes</li>
+          </ul>
         </div>
 
-        <div class="nav-right">
-            <a onclick="goToSection('mountain')"><i class="fa-solid fa-mountain"></i> Mountain</a>
-            <a onclick="goToSection('canyon')"><i class="fa-solid fa-layer-group"></i> Canyon</a>
-            <a onclick="goToSection('forest')"><i class="fa-solid fa-tree"></i> Forest</a>
-            <a onclick="goToSection('prepare')"><i class="fa-solid fa-person-hiking"></i> Prepare</a>
-            <a onclick="goToSection('dangers')"><i class="fa-solid fa-triangle-exclamation"></i> Dangers</a>
-            <a onclick="goToSection('lost')"><i class="fa-solid fa-map-pin"></i> Lost</a>
-            <a onclick="goToSection('quizA')"><i class="fa-solid fa-question"></i> Quiz</a>
-            <a onclick="goToSection('quizB')"><i class="fa-solid fa-map"></i> Map Quiz</a>
+        <div class="mini-quiz">
+          <p>Mini quiz — what to bring?</p>
+          <button class="mini-choice" data-correct="true">Water</button>
+          <button class="mini-choice">TV remote</button>
+          <div class="mini-result"></div>
         </div>
-    </nav>
 
-    <!-- INTRO SECTION -->
-    <section id="intro" class="section" data-bg="media/waterfall.jpg">
-        <div class="content fade-in">
-            <h1>Introduction to Hiking</h1>
-            <p>Hiking is a wonderful activity that lets you explore forests, mountains, and beautiful landscapes.</p>
-            <p>It's great for your body, mind, and spirit.</p>
-
-            <button class="nextBtn" onclick="goToSection('mountain')">Next</button>
-        </div>
+        <button class="next-btn" data-next="1">Next Section</button>
+      </div>
     </section>
 
-    <!-- MOUNTAIN SECTION -->
-    <section id="mountain" class="section" data-bg="media/rugged.jpg">
-        <div class="content fade-in">
-            <h1>Mountain Hiking</h1>
-            <p>Mountain hikes offer steep climbs, amazing views, and cooler temperatures at high altitudes.</p>
-            <p>You’ll encounter rocky slopes, strong winds, and breathtaking scenery.</p>
+    <section class="slide" data-bg="media/canyon.jpg" data-index="1">
+      <div class="card">
+        <h1>How to Prepare</h1>
+        <p>Research the trail, check weather, wear layers, pack water, snacks and a small first-aid kit. Tell someone your plan.</p>
 
-            <button class="preveousBtn" onclick="goToSection('intro')">Preveous</button>
-            <button class="nextBtn" onclick="goToSection('canyon')">Next</button>
+        <div class="summary">
+          <h3>Quick summary</h3>
+          <ul>
+            <li>Check weather & route</li>
+            <li>Pack essentials</li>
+            <li>Start easy</li>
+          </ul>
         </div>
+
+        <div class="mini-quiz">
+          <p>Mini quiz — essential item?</p>
+          <button class="mini-choice" data-correct="true">Water</button>
+          <button class="mini-choice">Candy bar only</button>
+          <div class="mini-result"></div>
+        </div>
+
+        <button class="next-btn" data-next="2">Next Section</button>
+      </div>
     </section>
 
-    <!-- CANYON SECTION -->
-    <section id="canyon" class="section" data-bg="media/canyon.jpg">
-        <div class="content fade-in">
-            <h1>Canyon Trails</h1>
-            <p>Canyons create deep narrow pathways carved by nature over millions of years.</p>
-            <p>You’ll find steep rocky walls, shaded routes, and incredible echo sounds.</p>
+    <section class="slide" data-bg="media/Rugged.jpg" data-index="2">
+      <div class="card">
+        <h1>What to Do If You Get Lost</h1>
+        <p>If you get lost, stop, stay calm, use the STOP method (Stop, Think, Observe, Plan), make yourself visible, and signal for help.</p>
 
-            <button class="preveousBtn" onclick="goToSection('mountain')">Preveous</button>
-            <button class="nextBtn" onclick="goToSection('forest')">Next</button>
+        <div class="summary">
+          <h3>Quick summary</h3>
+          <ul>
+            <li>Stop moving</li>
+            <li>Make yourself visible</li>
+            <li>Use whistle or phone if available</li>
+          </ul>
         </div>
+
+        <div class="mini-quiz">
+          <p>Mini quiz — first action if lost?</p>
+          <button class="mini-choice" data-correct="true">Stop and stay calm</button>
+          <button class="mini-choice">Run around</button>
+          <div class="mini-result"></div>
+        </div>
+
+        <button class="next-btn" data-next="3">Next Section</button>
+      </div>
     </section>
 
-    <!-- FOREST SECTION -->
-    <section id="forest" class="section" data-bg="media/forest.jpg">
-        <div class="content fade-in">
-            <h1>Forest Trails</h1>
-            <p>Forests are full of life and peaceful scenery.</p>
-            <p>You’ll experience wildlife, shade, soft ground, and fresh air.</p>
+    <section class="slide" data-bg="media/earth.jpg" data-index="3">
+      <div class="card">
+        <h1>Dangers of Hiking</h1>
+        <p>Watch weather, wildlife, dehydration and rough terrain. Take breaks and avoid risky shortcuts.</p>
 
-            <button class="preveousBtn" onclick="goToSection('canyon')">Preveous</button>
-            <button class="nextBtn" onclick="goToSection('prepare')">Next</button>
+        <div class="summary">
+          <h3>Quick summary</h3>
+          <ul>
+            <li>Weather can change fast</li>
+            <li>Stay hydrated</li>
+            <li>Watch your footing</li>
+          </ul>
         </div>
+
+        <div class="mini-quiz">
+          <p>Mini quiz — common danger?</p>
+          <button class="mini-choice" data-correct="true">Dehydration</button>
+          <button class="mini-choice">Too many photos</button>
+          <div class="mini-result"></div>
+        </div>
+
+        <button class="next-btn" data-next="4">Take Final Quiz</button>
+      </div>
     </section>
 
-    <!-- PREPARE -->
-    <section id="prepare" class="section" data-bg="media/forest.jpg">
-        <div class="content fade-in">
-            <h1>How to Prepare</h1>
-            <p>Always bring water, food, maps, and appropriate clothing.</p>
-            <p>Check weather and trail conditions before starting your journey.</p>
-
-            <button class="preveousBtn" onclick="goToSection('forest')">Preveous</button>
-            <button class="nextBtn" onclick="goToSection('dangers')">Next</button>
+    <!-- FINAL: map-style quiz slide -->
+    <section class="slide quiz-slide" data-bg="media/earth.jpg" data-index="4">
+      <div class="card">
+        <h1>Trail Map Quiz</h1>
+        <div id="quiz-container" class="quiz-container" aria-live="polite"></div>
+        <div class="quiz-controls">
+          <button id="retake">Retake Quiz</button>
         </div>
+      </div>
     </section>
+  </main>
 
-    <!-- DANGERS -->
-    <section id="dangers" class="section" data-bg="media/canyon.jpg">
-        <div class="content fade-in">
-            <h1>Dangers of Hiking</h1>
-            <p>Sudden weather changes, dehydration, and wildlife can be dangerous if you're unprepared.</p>
-
-            <button class="preveousBtn" onclick="goToSection('prepare')">Preveous</button>
-            <button class="nextBtn" onclick="goToSection('lost')">Next</button>
-        </div>
-    </section>
-
-    <!-- LOST -->
-    <section id="lost" class="section" data-bg="media/rugged.jpg">
-        <div class="content fade-in">
-            <h1>If You Get Lost</h1>
-            <p>Use the S.T.O.P method: Stop, Think, Observe, Plan.</p>
-            <p>Stay visible, stay calm, and stay in one place until help arrives.</p>
-
-            <button class="preveousBtn" onclick="goToSection('dangers')">Preveous</button>
-            <button class="nextBtn" onclick="goToSection('quizA')">Next</button>
-        </div>
-    </section>
-
-    <!-- QUIZ A (Simple Quiz) -->
-    <section id="quizA" class="section" data-bg="media/earth.jpg">
-        <div class="content fade-in">
-            <h1>Quick Hiking Quiz</h1>
-            <p>Which trail has steep cliffs?</p>
-
-            <button onclick="checkAnswerA('mountain')">Mountain</button>
-            <button onclick="checkAnswerA('canyon')">Canyon</button>
-            <button onclick="checkAnswerA('forest')">Forest</button>
-
-            <p id="resultA"></p>
-
-            <button class="preveousBtn" onclick="goToSection('lost')">Preveous</button>
-            <button class="nextBtn" onclick="goToSection('quizB')">Next</button>
-        </div>
-    </section>
-
-    <!-- QUIZ B (Final Quiz) -->
-    <section id="quizB" class="section quiz-map" data-bg="media/maptexture.jpg">
-        <div class="content fade-in">
-            <h1>Trail Map Quiz</h1>
-            <div id="quiz-container"></div>
-            <button id="restart-quiz">Retake Quiz</button>
-
-            <button class="preveousBtn" onclick="goToSection('quizA')">Preveous</button>
-        </div>
-    </section>
-
-    <audio id="correct-sound" src="media/correct.mp3"></audio>
-    <audio id="wrong-sound" src="media/wrong.mp3"></audio>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
