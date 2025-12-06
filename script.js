@@ -1,126 +1,123 @@
-/* ----------------------------------------------------
-   GLOBAL SETUP
------------------------------------------------------*/
+document.addEventListener('DOMContentLoaded', () => {
 
-// The list of backgrounds in order of sections
-const sectionBackgrounds = [
-    "media/waterfall.jpg",
-    "media/forest.jpg",
-    "media/desert.jpg",
-    "media/mountains.jpg"
-];
+  // ---- setup ----
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const overlay = document.getElementById('earth-overlay');
+  const quizContainer = document.getElementById('quiz-container');
+  let current = slides.findIndex(s => s.classList.contains('active'));
+  if (current < 0) current = 0;
 
-let currentSection = 0;
+  // ensure slides use dataset backgrounds (fix path case-sensitivity)
+  slides.forEach(s => {
+    const bg = s.dataset.bg;
+    if (bg) s.style.backgroundImage = `url("${bg}")`;
+  });
 
-/* ----------------------------------------------------
-   EARTH ZOOM TRANSITION BETWEEN SECTIONS
------------------------------------------------------*/
+  // helper: show slide
+  function showSlide(index) {
+    slides.forEach((s,i) => s.classList.toggle('active', i === index));
+    current = index;
+    // if we landed on quiz slide, build quiz
+    if (slides[index].classList.contains('quiz-slide')) {
+      buildQuiz();
+      // scroll quiz to start
+      quizContainer.scrollLeft = 0;
+    }
+  }
 
-function goToNextSection() {
-    const earth = document.getElementById("earth-zoom");
-    const content = document.getElementById("content");
-    const body = document.body;
+  // next button handler: show Earth overlay, then show next slide
+  document.body.addEventListener('click', (e) => {
+    const btn = e.target.closest('.next-btn');
+    if (!btn) return;
+    // determine next index (data-next must be numeric)
+    const nextIndex = Number(btn.dataset.next);
+    if (Number.isNaN(nextIndex)) return;
 
-    // If last section, stop
-    if (currentSection >= sectionBackgrounds.length - 1) return;
-
-    currentSection++;
-
-    // Zoom out
-    earth.classList.add("zoom-out");
-    content.classList.add("fade-out");
-
+    // play Earth zoom
+    overlay.classList.add('active');
+    // after overlay zoom-out, swap slides
     setTimeout(() => {
-        // Change background after zoom out
-        body.style.backgroundImage = `url(${sectionBackgrounds[currentSection]})`;
+      overlay.classList.remove('active');
+      showSlide(Math.min(nextIndex, slides.length - 1));
+    }, 1100);
+  });
 
-        // Zoom back in
-        earth.classList.remove("zoom-out");
-        earth.classList.add("zoom-in");
+  // mini-quiz feedback
+  document.body.addEventListener('click', (e) => {
+    const choice = e.target.closest('.mini-choice');
+    if (!choice) return;
+    const container = choice.closest('.mini-quiz');
+    const resultEl = container.querySelector('.mini-result');
+    const correct = choice.dataset.correct === "true";
+    // color feedback
+    container.querySelectorAll('.mini-choice').forEach(b => b.classList.remove('correct','wrong'));
+    choice.classList.add(correct ? 'correct' : 'wrong');
+    resultEl.textContent = correct ? 'Correct!' : 'Incorrect — try again';
+  });
 
-        content.classList.remove("fade-out");
-        content.classList.add("fade-in");
-    }, 1400);
+  // ---------------- Final Map Quiz ----------------
+  const quizData = [
+    { q: "What should you bring on a hike?", options: ["Candy", "Water", "TV"], a: 1 },
+    { q: "If you get lost, you should...", options: ["Run", "Stay calm", "Hide"], a: 1 },
+    { q: "What prevents dehydration?", options: ["Drink water", "Avoid water", "Eat chips"], a: 0 },
+    { q: "Best time to hike safely?", options: ["At night", "Daylight", "Storm"], a: 1 },
+    { q: "How to treat a small cut?", options: ["Wash & bandage", "Ignore it", "Use unclean cloth"], a: 0 },
+    { q: "What to check before hiking?", options: ["Weather", "Movie times", "Lottery"], a: 0 }
+  ];
 
-    // Reset zoom classes after animation
-    setTimeout(() => {
-        earth.classList.remove("zoom-in");
-    }, 2500);
-}
+  function buildQuiz() {
+    if (!quizContainer) return;
+    // avoid rebuilding if already built (simple guard)
+    if (quizContainer.dataset.built === "1") return;
+    quizContainer.innerHTML = '';
+    quizData.forEach((item, i) => {
+      const card = document.createElement('div');
+      card.className = 'map-card';
+      const prompt = document.createElement('p');
+      prompt.textContent = `${i+1}. ${item.q}`;
+      card.appendChild(prompt);
 
-/* ----------------------------------------------------
-   MINI QUIZ (1–2 Questions Per Section)
------------------------------------------------------*/
+      item.options.forEach((opt, idx) => {
+        const b = document.createElement('button');
+        b.className = 'final-choice';
+        b.textContent = opt;
+        b.dataset.q = i;
+        b.dataset.idx = idx;
+        b.addEventListener('click', () => {
+          const correct = item.a === idx;
+          b.classList.add(correct ? 'correct' : 'wrong');
+          // do not allow changing answer style after click for that button
+          // automatically scroll to next card (if any)
+          setTimeout(() => {
+            quizContainer.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
+          }, 250);
+        });
+        card.appendChild(b);
+      });
 
-function checkMiniQuiz(answer, correctAnswer, resultID) {
-    const resultBox = document.getElementById(resultID);
+      // result placeholder (optional)
+      const res = document.createElement('div');
+      res.id = `final-result-${i+1}`;
+      res.style.marginTop = '8px';
+      card.appendChild(res);
 
-    if (answer === correctAnswer) {
-        resultBox.innerHTML = "✔ Correct!";
-        resultBox.style.color = "lightgreen";
-    } else {
-        resultBox.innerHTML = "✘ Incorrect. Try again.";
-        resultBox.style.color = "salmon";
-    }
-}
+      quizContainer.appendChild(card);
+    });
+    quizContainer.dataset.built = "1";
+  }
 
-/* ----------------------------------------------------
-   FINAL QUIZ – MAP SCROLLING
------------------------------------------------------*/
+  // retake button
+  const retake = document.getElementById('retake');
+  if (retake) {
+    retake.addEventListener('click', () => {
+      // clear choices styling and reset scroll
+      quizContainer.querySelectorAll('.final-choice').forEach(b => b.classList.remove('correct','wrong'));
+      quizContainer.scrollLeft = 0;
+    });
+  }
 
-let currentMapQuestion = 0;
-
-function showQuestion(index) {
-    const map = document.getElementById("map-quiz");
-    map.style.transform = `translateX(-${index * 100}vw)`;
-}
-
-function nextMapQuestion() {
-    if (currentMapQuestion < 5) {
-        currentMapQuestion++;
-        showQuestion(currentMapQuestion);
-    }
-}
-
-function previousMapQuestion() {
-    if (currentMapQuestion > 0) {
-        currentMapQuestion--;
-        showQuestion(currentMapQuestion);
-    }
-}
-
-/* ----------------------------------------------------
-   FINAL QUIZ – CHECK ANSWERS
------------------------------------------------------*/
-
-function checkFinalAnswer(questionNumber, selectedAnswer, correctAnswer) {
-    const box = document.getElementById(`final-result-${questionNumber}`);
-
-    if (selectedAnswer === correctAnswer) {
-        box.innerHTML = "✔ Correct!";
-        box.style.color = "lightgreen";
-    } else {
-        box.innerHTML = "✘ Wrong.";
-        box.style.color = "salmon";
-    }
-}
-
-/* ----------------------------------------------------
-   RETAKE FINAL QUIZ
------------------------------------------------------*/
-
-function resetFinalQuiz() {
-    currentMapQuestion = 0;
-    showQuestion(0);
-
-    for (let i = 1; i <= 6; i++) {
-        const box = document.getElementById(`final-result-${i}`);
-        if (box) box.innerHTML = "";
-    }
-}
-
-/* ----------------------------------------------------
-   DEBUG (OPTIONAL – helps GitHub testing)
------------------------------------------------------*/
-
-console.log("script.js successfully loaded!");
+  // ensure starting slide is visible
+  showSlide(current);
+  // debug
+  console.log('script.js loaded — slides:', slides.length);
+});
