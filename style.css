@@ -1,62 +1,70 @@
-/* basic reset */
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;font-family:system-ui,Arial,sans-serif;background:#000;color:#fff}
-body{overflow:hidden}
-
-/* earth overlay for cinematic zoom */
-#earth-overlay{
-  position:fixed;inset:0;z-index:60;pointer-events:none;
-  background-image:url('media/earth.jpg');background-size:cover;background-position:center;
-  transform:scale(0);opacity:0;transition:transform 1.1s ease,opacity 1.1s ease;
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
 }
-#earth-overlay.active{transform:scale(1.05);opacity:1}
 
-/* slides */
-#slides{position:relative;width:100vw;height:100vh}
-.slide{
-  position:absolute;inset:0;
-  background-size:cover;background-position:center;
-  display:flex;align-items:center;justify-content:center;
-  transition:opacity .45s ease,visibility .45s ease;
-  opacity:0;visibility:hidden;pointer-events:none;
+#map-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
 }
-.slide.active{opacity:1;visibility:visible;pointer-events:auto}
 
-/* card */
-.card{
-  width:min(980px,92%);background:rgba(0,0,0,0.56);padding:20px;border-radius:10px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.6);
+#map {
+  width: 120%;
+  transform: scale(1.1);
+  transition: transform 1.5s ease;
+  opacity: 0.85;
 }
-.card h1{font-size:1.8rem;margin-bottom:8px}
-.card p{line-height:1.55;margin-bottom:12px;color:#e9efe9}
-.summary{margin:8px 0}
-.summary h3{margin-bottom:6px}
-.summary ul{list-style:disc;margin-left:18px}
-.summary li{margin:6px 0}
 
-/* mini quiz */
-.mini-quiz{margin-top:10px}
-.mini-choice{margin:6px 6px 0 0;padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.02);color:#fff;cursor:pointer}
-.mini-choice.correct{background:#1aa84a;border-color:#1aa84a}
-.mini-choice.wrong{background:#d64545;border-color:#d64545}
-.mini-result{margin-top:8px;height:20px}
+#content {
+  position: absolute;
+  top: 10%;
+  width: 100%;
+  text-align: center;
+  color: white;
+}
 
-/* next button */
-.next-btn{display:inline-block;margin-top:14px;padding:10px 14px;border-radius:8px;border:none;background:#2f8f3f;color:white;cursor:pointer;font-weight:700}
+.section {
+  display: none;
+  padding: 20px;
+}
 
-/* quiz slide - horizontal cards like a map */
-.quiz-container{display:flex;overflow-x:auto;scroll-behavior:smooth;padding:10px 0}
-.map-card{min-width:100%;padding:10px}
-.final-choice{display:block;width:100%;text-align:left;margin:8px 0;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.02);cursor:pointer}
-.final-choice.correct{background:#1aa84a}
-.final-choice.wrong{background:#d64545}
+.section.active {
+  display: block;
+}
 
-/* controls */
-.quiz-controls{margin-top:12px;text-align:center}
-#retake{padding:10px 14px;border-radius:8px;border:none;background:#1f7be0;color:#fff;cursor:pointer}
+.summary {
+  margin-top: 20px;
+  text-align: left;
+  font-size: 18px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-/* responsive */
-@media (max-width:600px){
-  .card h1{font-size:1.4rem}
-  .card{padding:14px}
+#nav-buttons {
+  margin-top: 20px;
+}
+
+button {
+  padding: 12px 24px;
+  margin: 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  background: #008cff;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #006dd1;
+}
+
+.answer {
+  display: block;
+  margin: 10px auto;
 }
