@@ -1,51 +1,73 @@
-let current = 0;
+let currentSection = 0;
 const sections = document.querySelectorAll(".section");
-const map = document.getElementById("map");
+
+
+// INITIAL BACKGROUND
+sections.forEach(sec => {
+sec.style.backgroundImage = `url(${sec.dataset.bg})`;
+});
+
+
+// NAVIGATION BUTTONS
+const nextBtn = document.getElementById("nextBtn");
+const prevBtn = document.getElementById("prevBtn");
+
 
 function showSection(index) {
-  sections.forEach(sec => sec.classList.remove("active"));
-  sections[index].classList.add("active");
-
-  // Smooth zoom animation
-  map.style.transform = "scale(1.3)";
-  setTimeout(() => {
-    map.style.transform = "scale(1.1)";
-  }, 500);
+sections.forEach(s => s.classList.remove("active"));
+sections[index].classList.add("active");
 }
 
-// NEXT button
-document.getElementById("nextBtn").addEventListener("click", () => {
-  if (current < sections.length - 1) {
-    current++;
-    showSection(current);
-  }
+
+function transitionTo(index) {
+document.getElementById("zoom-transition").style.display = "flex";
+setTimeout(() => {
+showSection(index);
+setTimeout(() => {
+document.getElementById("zoom-transition").style.display = "none";
+}, 1200);
+}, 1200);
+}
+
+
+nextBtn.onclick = () => {
+if (currentSection < sections.length - 1) {
+currentSection++;
+transitionTo(currentSection);
+}
+};
+
+
+prevBtn.onclick = () => {
+if (currentSection > 0) {
+currentSection--;
+transitionTo(currentSection);
+}
+};
+
+
+// MINI QUIZ
+const miniAnswers = document.querySelectorAll(".mini-answer");
+miniAnswers.forEach(btn => {
+btn.onclick = () => {
+if (btn.dataset.correct) {
+btn.classList.add("correct");
+} else {
+btn.classList.add("wrong");
+}
+};
 });
 
-// PREVIOUS button
-document.getElementById("prevBtn").addEventListener("click", () => {
-  if (current > 0) {
-    current--;
-    showSection(current);
-  }
-});
 
-// QUIZ
-const answers = document.querySelectorAll(".answer");
-let correctCount = 0;
+// FINAL MAP QUIZ
+let mapIndex = 0;
+const mapQuiz = document.getElementById("map-quiz");
+const finalAnswers = document.querySelectorAll(".final-answer");
+const retakeQuiz = document.getElementById("retakeQuiz");
 
-answers.forEach(btn => {
-  btn.addEventListener("click", () => {
-    if (btn.dataset.correct) {
-      correctCount++;
-    }
-    
-    btn.style.background = btn.dataset.correct ? "green" : "red";
-    btn.style.pointerEvents = "none";
 
-    // Show score if quiz is done
-    if (correctCount >= 2) {
-      document.getElementById("quiz-result").textContent =
-        "🎉 Great job! You finished the quiz!";
-    }
-  });
-});
+finalAnswers.forEach(btn => {
+btn.onclick = () => {
+if (mapIndex < 2) {
+mapIndex++;
+};
