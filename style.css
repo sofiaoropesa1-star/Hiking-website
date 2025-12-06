@@ -1,70 +1,55 @@
-body {
-  margin: 0;
-  overflow: hidden;
-  font-family: Arial, sans-serif;
+/* FULLSCREENFULL BACKGROUND */
+width: 120%;
+animation: zoomAnimation 2s ease forwards;
 }
 
-#map-container {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: -1;
+
+@keyframes zoomAnimation {
+0% { transform: scale(1); }
+50% { transform: scale(0.3); }
+100% { transform: scale(1); }
 }
 
-#map {
-  width: 120%;
-  transform: scale(1.1);
-  transition: transform 1.5s ease;
-  opacity: 0.85;
-}
 
-#content {
-  position: absolute;
-  top: 10%;
-  width: 100%;
-  text-align: center;
-  color: white;
-}
-
-.section {
-  display: none;
-  padding: 20px;
-}
-
-.section.active {
-  display: block;
-}
-
-.summary {
-  margin-top: 20px;
-  text-align: left;
-  font-size: 18px;
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
+/* NAV BUTTONS */
 #nav-buttons {
-  margin-top: 20px;
+position: fixed;
+bottom: 20px;
+width: 100%;
+display: flex;
+justify-content: space-between;
+padding: 0 20px;
 }
+
 
 button {
-  padding: 12px 24px;
-  margin: 10px;
-  font-size: 18px;
-  border: none;
-  border-radius: 10px;
-  background: #008cff;
-  color: white;
-  cursor: pointer;
+padding: 10px 20px;
+border: none;
+font-size: 18px;
+border-radius: 8px;
 }
 
-button:hover {
-  background: #006dd1;
+
+/* MINI QUIZ */
+.mini-quiz button.correct { background: green; }
+.mini-quiz button.wrong { background: red; }
+
+
+/* MAP QUIZ */
+#map-quiz {
+width: 300%;
+display: flex;
+transition: transform 0.7s ease;
 }
 
-.answer {
-  display: block;
-  margin: 10px auto;
+
+.map-question {
+width: 100vw;
+padding: 20px;
+}
+
+
+#retakeQuiz {
+margin-top: 20px;
+padding: 10px 20px;
 }
