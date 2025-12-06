@@ -1,83 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hiking Guide</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+<!-- Mini quiz -->
+<div class="mini-quiz">
+<p class="question">What should every hiker bring?</p>
+<button class="mini-answer" data-correct="true">Water</button>
+<button class="mini-answer">Video games</button>
+</div>
+</section>
 
-  <!-- MAP BACKGROUND -->
-  <div id="map-container">
-    <img id="map" src="media/map.png" alt="Map" />
-  </div>
 
-  <!-- MAIN CONTENT -->
-  <div id="content">
+<!-- SECTION 4 -->
+<section class="section" id="section4" data-bg="media/section4.jpg">
+<h1>Dangers of Hiking</h1>
+<p>Understanding hiking dangers helps reduce risks and prepares hikers to handle unexpected situations.</p>
 
-    <!-- SECTION 1 -->
-    <section class="section active" id="section1">
-      <h1>🌄 Mountain Safety</h1>
-      <p>Understanding mountain safety helps hikers prepare, avoid dangers, and respond in emergencies.</p>
 
-      <ul class="summary">
-        <li>Always check weather conditions</li>
-        <li>Bring necessary gear</li>
-        <li>Tell someone your route</li>
-      </ul>
-    </section>
+<ul class="simple-points">
+<li>Wildlife encounters</li>
+<li>Sudden weather changes</li>
+<li>Slippery or unstable terrain</li>
+</ul>
 
-    <!-- SECTION 2 -->
-    <section class="section" id="section2">
-      <h1>🧭 Navigation Skills</h1>
-      <p>Using maps and compasses helps hikers stay on track and avoid getting lost.</p>
 
-      <ul class="summary">
-        <li>Know how to read topographic maps</li>
-        <li>Carry a compass</li>
-        <li>Stay aware of your surroundings</li>
-      </ul>
-    </section>
+<!-- Mini quiz -->
+<div class="mini-quiz">
+<p class="question">Which of these is a hiking danger?</p>
+<button class="mini-answer">Soft pillows</button>
+<button class="mini-answer" data-correct="true">Slippery terrain</button>
+</div>
+</section>
 
-    <!-- SECTION 3 -->
-    <section class="section" id="section3">
-      <h1>🥾 Hiking Gear</h1>
-      <p>Proper gear keeps hikers safe, comfortable, and prepared for changing conditions.</p>
 
-      <ul class="summary">
-        <li>Wear sturdy boots</li>
-        <li>Carry water and snacks</li>
-        <li>Wear weather-appropriate clothing</li>
-      </ul>
-    </section>
+<!-- FINAL QUIZ (MAP) -->
+<section class="section" id="finalQuiz" data-bg="media/map.jpg">
+<h1>Final Hiking Knowledge Quiz</h1>
 
-    <!-- FINAL QUIZ -->
-    <section class="section" id="quiz-section">
-      <h1>📝 Final Quiz</h1>
 
-      <div id="quiz">
-        <p>1. What tool helps you navigate on a trail?</p>
-        <button class="answer" data-correct="true">Compass</button>
-        <button class="answer">Sunscreen</button>
+<div id="map-quiz">
+<div class="map-question active">
+<p>1. What is essential to carry while hiking?</p>
+<button class="final-answer" data-correct="true">Water</button>
+<button class="final-answer">Extra TVs</button>
+</div>
 
-        <p>2. What should you always carry?</p>
-        <button class="answer">TV Remote</button>
-        <button class="answer" data-correct="true">Water</button>
-      </div>
 
-      <p id="quiz-result"></p>
-    </section>
+<div class="map-question">
+<p>2. What helps you navigate?</p>
+<button class="final-answer" data-correct="true">Compass</button>
+<button class="final-answer">Toothbrush</button>
+</div>
 
-    <!-- NAV BUTTONS -->
-    <div id="nav-buttons">
-      <button id="prevBtn">⬅ Previous</button>
-      <button id="nextBtn">Next ➡</button>
-    </div>
 
-  </div>
+<div class="map-question">
+<p>3. Which is a danger?</p>
+<button class="final-answer">Comfortable grass</button>
+<button class="final-answer" data-correct="true">Loose rocks</button>
+</div>
+</div>
 
-  <script src="script.js"></script>
+
+<button id="retakeQuiz">Retake Quiz</button>
+</section>
+
+
+<!-- NAV BUTTONS -->
+<div id="nav-buttons">
+<button id="prevBtn">⬅ Previous</button>
+<button id="nextBtn">Next ➡</button>
+</div>
+
+
+</div>
+
+
+<script src="script.js"></script>
+
 
 </body>
 </html>
