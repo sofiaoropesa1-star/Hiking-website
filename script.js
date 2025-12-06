@@ -1,28 +1,4 @@
 let currentSection = 0;
-const sections = document.querySelectorAll(".section");
-
-
-// INITIAL BACKGROUND
-sections.forEach(sec => {
-sec.style.backgroundImage = `url(${sec.dataset.bg})`;
-});
-
-
-// NAVIGATION BUTTONS
-const nextBtn = document.getElementById("nextBtn");
-const prevBtn = document.getElementById("prevBtn");
-
-
-function showSection(index) {
-sections.forEach(s => s.classList.remove("active"));
-sections[index].classList.add("active");
-}
-
-
-function transitionTo(index) {
-document.getElementById("zoom-transition").style.display = "flex";
-setTimeout(() => {
-showSection(index);
 setTimeout(() => {
 document.getElementById("zoom-transition").style.display = "none";
 }, 1200);
@@ -70,4 +46,13 @@ finalAnswers.forEach(btn => {
 btn.onclick = () => {
 if (mapIndex < 2) {
 mapIndex++;
+mapQuiz.style.transform = `translateX(-${mapIndex * 100}vw)`;
+}
+};
+});
+
+
+retakeQuiz.onclick = () => {
+mapIndex = 0;
+mapQuiz.style.transform = "translateX(0)";
 };
