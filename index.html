@@ -1,79 +1,130 @@
 <!DOCTYPE html>
-<!-- Mini quiz -->
-<div class="mini-quiz">
-<p class="question">What should every hiker bring?</p>
-<button class="mini-answer" data-correct="true">Water</button>
-<button class="mini-answer">Video games</button>
-</div>
-</section>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TrailTrek — Hiking Guide</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
+  <!-- Earth overlay for zoom animation -->
+  <div id="earth-overlay" aria-hidden="true"></div>
 
-<!-- SECTION 4 -->
-<section class="section" id="section4" data-bg="media/section4.jpg">
-<h1>Dangers of Hiking</h1>
-<p>Understanding hiking dangers helps reduce risks and prepares hikers to handle unexpected situations.</p>
+  <!-- Sections container -->
+  <main id="slides">
+    <section class="slide active" data-bg="media/forest.jpg" data-index="0">
+      <div class="card">
+        <h1>Introduction to Hiking</h1>
+        <p>Hiking is walking through natural places such as forests, mountains and deserts. It helps fitness, reduces stress, and connects you with nature.</p>
 
+        <div class="summary">
+          <h3>Quick summary</h3>
+          <ul>
+            <li>Good exercise</li>
+            <li>Low cost to start</li>
+            <li>Bring water and good shoes</li>
+          </ul>
+        </div>
 
-<ul class="simple-points">
-<li>Wildlife encounters</li>
-<li>Sudden weather changes</li>
-<li>Slippery or unstable terrain</li>
-</ul>
+        <div class="mini-quiz">
+          <p>Mini quiz — what to bring?</p>
+          <button class="mini-choice" data-correct="true">Water</button>
+          <button class="mini-choice">TV remote</button>
+          <div class="mini-result"></div>
+        </div>
 
+        <button class="next-btn" data-next="1">Next Section</button>
+      </div>
+    </section>
 
-<!-- Mini quiz -->
-<div class="mini-quiz">
-<p class="question">Which of these is a hiking danger?</p>
-<button class="mini-answer">Soft pillows</button>
-<button class="mini-answer" data-correct="true">Slippery terrain</button>
-</div>
-</section>
+    <section class="slide" data-bg="media/canyon.jpg" data-index="1">
+      <div class="card">
+        <h1>How to Prepare</h1>
+        <p>Research the trail, check weather, wear layers, pack water, snacks and a small first-aid kit. Tell someone your plan.</p>
 
+        <div class="summary">
+          <h3>Quick summary</h3>
+          <ul>
+            <li>Check weather & route</li>
+            <li>Pack essentials</li>
+            <li>Start easy</li>
+          </ul>
+        </div>
 
-<!-- FINAL QUIZ (MAP) -->
-<section class="section" id="finalQuiz" data-bg="media/map.jpg">
-<h1>Final Hiking Knowledge Quiz</h1>
+        <div class="mini-quiz">
+          <p>Mini quiz — essential item?</p>
+          <button class="mini-choice" data-correct="true">Water</button>
+          <button class="mini-choice">Candy bar only</button>
+          <div class="mini-result"></div>
+        </div>
 
+        <button class="next-btn" data-next="2">Next Section</button>
+      </div>
+    </section>
 
-<div id="map-quiz">
-<div class="map-question active">
-<p>1. What is essential to carry while hiking?</p>
-<button class="final-answer" data-correct="true">Water</button>
-<button class="final-answer">Extra TVs</button>
-</div>
+    <section class="slide" data-bg="media/Rugged.jpg" data-index="2">
+      <div class="card">
+        <h1>What to Do If You Get Lost</h1>
+        <p>If you get lost, stop, stay calm, use the STOP method (Stop, Think, Observe, Plan), make yourself visible, and signal for help.</p>
 
+        <div class="summary">
+          <h3>Quick summary</h3>
+          <ul>
+            <li>Stop moving</li>
+            <li>Make yourself visible</li>
+            <li>Use whistle or phone if available</li>
+          </ul>
+        </div>
 
-<div class="map-question">
-<p>2. What helps you navigate?</p>
-<button class="final-answer" data-correct="true">Compass</button>
-<button class="final-answer">Toothbrush</button>
-</div>
+        <div class="mini-quiz">
+          <p>Mini quiz — first action if lost?</p>
+          <button class="mini-choice" data-correct="true">Stop and stay calm</button>
+          <button class="mini-choice">Run around</button>
+          <div class="mini-result"></div>
+        </div>
 
+        <button class="next-btn" data-next="3">Next Section</button>
+      </div>
+    </section>
 
-<div class="map-question">
-<p>3. Which is a danger?</p>
-<button class="final-answer">Comfortable grass</button>
-<button class="final-answer" data-correct="true">Loose rocks</button>
-</div>
-</div>
+    <section class="slide" data-bg="media/earth.jpg" data-index="3">
+      <div class="card">
+        <h1>Dangers of Hiking</h1>
+        <p>Watch weather, wildlife, dehydration and rough terrain. Take breaks and avoid risky shortcuts.</p>
 
+        <div class="summary">
+          <h3>Quick summary</h3>
+          <ul>
+            <li>Weather can change fast</li>
+            <li>Stay hydrated</li>
+            <li>Watch your footing</li>
+          </ul>
+        </div>
 
-<button id="retakeQuiz">Retake Quiz</button>
-</section>
+        <div class="mini-quiz">
+          <p>Mini quiz — common danger?</p>
+          <button class="mini-choice" data-correct="true">Dehydration</button>
+          <button class="mini-choice">Too many photos</button>
+          <div class="mini-result"></div>
+        </div>
 
+        <button class="next-btn" data-next="4">Take Final Quiz</button>
+      </div>
+    </section>
 
-<!-- NAV BUTTONS -->
-<div id="nav-buttons">
-<button id="prevBtn">⬅ Previous</button>
-<button id="nextBtn">Next ➡</button>
-</div>
+    <!-- FINAL: map-style quiz slide -->
+    <section class="slide quiz-slide" data-bg="media/earth.jpg" data-index="4">
+      <div class="card">
+        <h1>Trail Map Quiz</h1>
+        <div id="quiz-container" class="quiz-container" aria-live="polite"></div>
+        <div class="quiz-controls">
+          <button id="retake">Retake Quiz</button>
+        </div>
+      </div>
+    </section>
+  </main>
 
-
-</div>
-
-
-<script src="script.js"></script>
-
-
+  <script src="script.js"></script>
 </body>
 </html>
