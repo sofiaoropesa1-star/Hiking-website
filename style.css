@@ -39,6 +39,7 @@ body{overflow:hidden}
   background:rgba(255,255,255,.1);
   border:1px solid rgba(255,255,255,.15);
   border-radius:8px;color:#fff;
+  cursor:pointer;
 }
 .mini-choice.correct{background:#1aa84a;border-color:#1aa84a}
 .mini-choice.wrong{background:#d64545;border-color:#d64545}
@@ -58,8 +59,49 @@ body{overflow:hidden}
 .prev-btn{background:#1f5fbf}
 
 /* Final Quiz */
-.quiz-container{display:flex;overflow-x:auto;scroll-behavior:smooth}
-.map-card{min-width:100%;padding:10px}
-.final-choice{margin:6px 0;padding:10px;border-radius:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;cursor:pointer}
+#quiz-container{
+  display:flex;
+  overflow-x:auto;
+  scroll-behavior:smooth;
+  scroll-snap-type:x mandatory;
+}
+.map-card{
+  min-width:100%;
+  padding:10px;
+  scroll-snap-align:start;
+  flex-shrink:0;
+}
+.final-choice{
+  margin:6px 0;
+  padding:10px;
+  border-radius:8px;
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.2);
+  color:#fff;
+  cursor:pointer;
+}
 .final-choice.correct{background:#1aa84a}
 .final-choice.wrong{background:#d64545}
+
+/* Progress Bar */
+#quiz-progress{margin-bottom:15px}
+#progress-text{display:block;margin-bottom:5px;font-weight:bold;text-align:center}
+#progress-bar-container{
+  width:100%;
+  height:10px;
+  background: rgba(255,255,255,0.2);
+  border-radius:5px;
+  overflow:hidden;
+}
+#progress-bar{
+  width:0%;
+  height:100%;
+  background:#1aa84a;
+  transition: width 0.4s ease;
+}
+
+/* Responsive */
+@media(max-width:600px){
+  .card{width:95%;padding:15px;font-size:0.9rem;}
+  .mini-choice,.next-btn,.prev-btn,.final-choice{padding:6px 10px;font-size:0.9rem;}
+}
