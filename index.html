@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TrailTrek — Hiking Guide</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -15,7 +15,7 @@
     <section class="slide active" data-bg="images/forest.jpg" data-index="0">
       <div class="card">
         <h1>Introduction to Hiking</h1>
-        <p>Hiking is walking through natural places such as forests, mountains and deserts.</p>
+        <p>Hiking is walking through natural places such as forests, mountains, and deserts. It’s a great way to explore nature while improving your fitness. Always plan your route and be aware of your surroundings to stay safe.</p>
 
         <div class="summary">
           <h3>Quick Summary</h3>
@@ -42,7 +42,7 @@
     <section class="slide" data-bg="images/canyon.jpg" data-index="1">
       <div class="card">
         <h1>How to Prepare</h1>
-        <p>Research the trail, check weather, pack water & snacks, and tell someone your plan.</p>
+        <p>Research the trail, check weather, pack water & snacks, and tell someone your plan. Bring a small first-aid kit and a map or GPS device to avoid getting lost. Dress in layers so you can adjust to changing temperatures and conditions.</p>
 
         <div class="summary">
           <h3>Quick Summary</h3>
@@ -69,7 +69,7 @@
     <section class="slide" data-bg="images/rugged.jpg" data-index="2">
       <div class="card">
         <h1>If You Get Lost</h1>
-        <p>Stay calm, use STOP (Stop, Think, Observe, Plan), and make yourself visible.</p>
+        <p>Stay calm, use STOP (Stop, Think, Observe, Plan), and make yourself visible. Avoid wandering aimlessly, which can make it harder for rescuers to find you. Leave markers like stacked rocks or visible items to signal your path.</p>
 
         <div class="summary">
           <h3>Quick Summary</h3>
@@ -96,7 +96,7 @@
     <section class="slide" data-bg="images/earth.jpg" data-index="3">
       <div class="card">
         <h1>Dangers of Hiking</h1>
-        <p>Beware wildlife, terrain, dehydration, and sudden weather.</p>
+        <p>Beware wildlife, terrain, dehydration, and sudden weather. Watch for slippery rocks or loose soil to prevent falls. Carry extra water and snacks to maintain energy and avoid fatigue during your hike.</p>
 
         <div class="summary">
           <h3>Quick Summary</h3>
@@ -115,7 +115,7 @@
         </div>
 
         <button class="prev-btn" data-prev="2">Previous</button>
-        <button class="next-btn" data-next="4">Final Quiz</button>
+        <button class="next-btn" data-next="4">Next</button>
       </div>
     </section>
 
@@ -123,6 +123,15 @@
     <section class="slide quiz-slide" data-bg="images/earth.jpg" data-index="4">
       <div class="card">
         <h1>Trail Map Quiz</h1>
+
+        <!-- Progress Bar -->
+        <div id="quiz-progress">
+          <span id="progress-text">Question 1 of 10</span>
+          <div id="progress-bar-container">
+            <div id="progress-bar"></div>
+          </div>
+        </div>
+
         <div id="quiz-container"></div>
 
         <div class="quiz-controls">
