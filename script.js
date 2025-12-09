@@ -1,120 +1,96 @@
-// ----------------------------
-// Section Data
-// ----------------------------
-const sections = [
-    {
-        title: "Rugged Mountains",
-        text: "Mountains offer challenging terrain and breathtaking views. Hikers should be prepared for steep climbs and cooler temperatures.",
-        img: "images/rugged.jpg",
-        question: "What should hikers be prepared for in the mountains?",
-        correct: "steep climbs"
-    },
-    {
-        title: "Deep Canyons",
-        text: "Canyons provide unique geological formations and can vary from hot and dry to cool and shaded.",
-        img: "images/canyon.jpg",
-        question: "What do canyons provide to hikers?",
-        correct: "geological formations"
-    },
-    {
-        title: "Earth Pathways",
-        text: "Dirt and earth trails are the most common type of hiking paths, offering moderate difficulty and great scenery.",
-        img: "images/earth.jpg",
-        question: "What type of trail is most common for hikers?",
-        correct: "dirt"
-    },
-    {
-        title: "Lush Forests",
-        text: "Forests offer shade, wildlife, and peaceful sounds. Trails can be soft and covered in leaves.",
-        img: "images/forest.jpg",
-        question: "What do forests offer hikers?",
-        correct: "shade"
-    }
-];
+document.addEventListener("DOMContentLoaded", () => {
 
-// ----------------------------
-// Variables
-// ----------------------------
-let currentSection = 0;
+  const slides = [...document.querySelectorAll(".slide")];
+  const overlay = document.getElementById("earth-overlay");
+  let current = 0;
 
-// DOM elements
-const titleEl = document.getElementById("section-title");
-const textEl = document.getElementById("section-text");
-const imgEl = document.getElementById("section-img");
-const questionEl = document.getElementById("question-text");
-const answerInput = document.getElementById("answer");
-const feedbackEl = document.getElementById("feedback");
+  // Set background images
+  slides.forEach(s => {
+    const bg = s.dataset.bg;
+    if (bg) s.style.backgroundImage = `url(${bg})`;
+  });
 
-const nextBtn = document.getElementById("next-btn");
-const prevBtn = document.getElementById("prev-btn");
-const checkBtn = document.getElementById("check-answer-btn");
+  function showSlide(i) {
+    slides.forEach((s, idx) => s.classList.toggle("active", idx === i));
+    current = i;
+  }
 
-// ----------------------------
-// Load a Section
-// ----------------------------
-function loadSection() {
-    const s = sections[currentSection];
+  // Next button
+  document.body.addEventListener("click", (e) => {
+    const btn = e.target.closest(".next-btn");
+    if (!btn) return;
 
-    titleEl.textContent = s.title;
-    textEl.textContent = s.text;
-    imgEl.src = s.img;
-    questionEl.textContent = s.question;
+    const next = Number(btn.dataset.next);
 
-    answerInput.value = "";
-    feedbackEl.textContent = "";
+    overlay.classList.add("active");
 
-    // Disable prev button on first section
-    prevBtn.disabled = currentSection === 0;
-
-    // Change next button to Finish on last section
-    nextBtn.textContent = currentSection === sections.length - 1 ? "Finish" : "Next";
-
-    // Smooth fade animation
-    document.querySelector(".section-container").classList.add("fade");
     setTimeout(() => {
-        document.querySelector(".section-container").classList.remove("fade");
-    }, 300);
-}
+      overlay.classList.remove("active");
+      showSlide(next);
+    }, 1100);
+  });
 
-// ----------------------------
-// Check Answer
-// ----------------------------
-checkBtn.addEventListener("click", () => {
-    const user = answerInput.value.trim().toLowerCase();
-    const correct = sections[currentSection].correct.toLowerCase();
+  // Previous button
+  document.body.addEventListener("click", (e) => {
+    const btn = e.target.closest(".prev-btn");
+    if (!btn) return;
 
-    if (user.includes(correct)) {
-        feedbackEl.textContent = "Correct! Good job 👍";
-        feedbackEl.style.color = "lightgreen";
-    } else {
-        feedbackEl.textContent = "Incorrect. Try again!";
-        feedbackEl.style.color = "salmon";
-    }
+    const prev = Number(btn.dataset.prev);
+
+    showSlide(prev);
+  });
+
+  // Mini quiz
+  document.body.addEventListener("click", (e) => {
+    const choice = e.target.closest(".mini-choice");
+    if (!choice) return;
+
+    const container = choice.closest(".mini-quiz");
+    const result = container.querySelector(".mini-result");
+
+    const isCorrect = choice.dataset.correct === "true";
+
+    container.querySelectorAll(".mini-choice").forEach(b => b.classList.remove("correct","wrong"));
+    choice.classList.add(isCorrect ? "correct" : "wrong");
+
+    result.textContent = isCorrect ? "Correct!" : "Try again";
+  });
+
+  // Final quiz
+  const quizContainer = document.getElementById("quiz-container");
+  const quizData = [
+    { q:"What should you bring on a hike?", options:["Candy","Water","TV"], a:1 },
+    { q:"If you get lost, you should…", options:["Run","Stay calm","Hide"], a:1 }
+  ];
+
+  function buildQuiz() {
+    quizContainer.innerHTML = "";
+    quizData.forEach((item, i) => {
+      const card = document.createElement("div");
+      card.className = "map-card";
+
+      const q = document.createElement("p");
+      q.textContent = `${i+1}. ${item.q}`;
+      card.appendChild(q);
+
+      item.options.forEach((text, idx) => {
+        const b = document.createElement("button");
+        b.className = "final-choice";
+        b.textContent = text;
+
+        b.onclick = () => {
+          b.classList.add(idx === item.a ? "correct" : "wrong");
+          quizContainer.scrollBy({ left: window.innerWidth, behavior:"smooth" });
+        };
+
+        card.appendChild(b);
+      });
+
+      quizContainer.appendChild(card);
+    });
+  }
+
+  buildQuiz();
+  showSlide(0);
+
 });
-
-// ----------------------------
-// Next Section
-// ----------------------------
-nextBtn.addEventListener("click", () => {
-    if (currentSection < sections.length - 1) {
-        currentSection++;
-        loadSection();
-    } else {
-        alert("🎉 You finished the hiking guide!");
-    }
-});
-
-// ----------------------------
-// Previous Section
-// ----------------------------
-prevBtn.addEventListener("click", () => {
-    if (currentSection > 0) {
-        currentSection--;
-        loadSection();
-    }
-});
-
-// ----------------------------
-// Start Page
-// ----------------------------
-loadSection();
