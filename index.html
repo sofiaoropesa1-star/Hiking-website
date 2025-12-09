@@ -1,164 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hiking Guide</title>
+  <title>TrailTrek — Hiking Guide</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-  <!-- Earth zoom animation overlay -->
   <div id="earth-overlay"></div>
 
   <main id="slides">
-
-    <!-- --------------------------------------------------------
-      SECTION 1 — Introduction
-    --------------------------------------------------------- -->
-    <section class="slide active" data-bg="forest.jpg">
+    <!-- SECTION 0 -->
+    <section class="slide active" data-bg="images/forest.jpg" data-index="0">
       <div class="card">
         <h1>Introduction to Hiking</h1>
-        <p>
-          Hiking is walking through forests, mountains, deserts and other natural
-          places. It improves your physical health, reduces stress, and connects
-          you with nature.
-        </p>
+        <p>Hiking is walking through natural places such as forests, mountains and deserts.</p>
 
         <div class="summary">
-          <h3>Simplified Summary</h3>
+          <h3>Quick Summary</h3>
           <ul>
-            <li>Hiking is good exercise</li>
-            <li>Does not require expensive equipment</li>
-            <li>Always bring water</li>
+            <li>Good exercise</li>
+            <li>Low cost to start</li>
+            <li>Bring water and good shoes</li>
           </ul>
         </div>
 
         <div class="mini-quiz">
-          <p>Mini Quiz — What should you bring?</p>
+          <p>Mini quiz — what to bring?</p>
           <button class="mini-choice" data-correct="true">Water</button>
           <button class="mini-choice">TV Remote</button>
           <div class="mini-result"></div>
         </div>
 
-        <button class="nav-btn prev-btn" data-prev="0">Previous</button>
-        <button class="nav-btn next-btn" data-next="1">Next</button>
+        <button class="prev-btn" data-prev="0">Previous</button>
+        <button class="next-btn" data-next="1">Next</button>
       </div>
     </section>
 
-    <!-- --------------------------------------------------------
-      SECTION 2 — Preparation
-    --------------------------------------------------------- -->
-    <section class="slide" data-bg="canyon.jpg">
+    <!-- SECTION 1 -->
+    <section class="slide" data-bg="images/canyon.jpg" data-index="1">
       <div class="card">
-        <h1>How to Prepare for a Hike</h1>
-        <p>
-          Before hiking, check the weather, research the trail, bring water,
-          snacks, and a first-aid kit. Wear good shoes and tell someone where
-          you are going.
-        </p>
+        <h1>How to Prepare</h1>
+        <p>Research the trail, check weather, pack water & snacks, and tell someone your plan.</p>
 
         <div class="summary">
-          <h3>Simplified Summary</h3>
+          <h3>Quick Summary</h3>
           <ul>
-            <li>Check weather</li>
-            <li>Pack water and snacks</li>
-            <li>Wear strong shoes</li>
+            <li>Check weather & route</li>
+            <li>Pack essentials</li>
+            <li>Start easy</li>
           </ul>
         </div>
 
         <div class="mini-quiz">
-          <p>Mini Quiz — What is important to bring?</p>
+          <p>Mini quiz — essential item?</p>
           <button class="mini-choice" data-correct="true">Water</button>
-          <button class="mini-choice">Only candy</button>
+          <button class="mini-choice">Candy Bar Only</button>
           <div class="mini-result"></div>
         </div>
 
-        <button class="nav-btn prev-btn" data-prev="0">Previous</button>
-        <button class="nav-btn next-btn" data-next="2">Next</button>
+        <button class="prev-btn" data-prev="0">Previous</button>
+        <button class="next-btn" data-next="2">Next</button>
       </div>
     </section>
 
-    <!-- --------------------------------------------------------
-      SECTION 3 — Getting Lost
-    --------------------------------------------------------- -->
-    <section class="slide" data-bg="Rugged.jpg">
+    <!-- SECTION 2 -->
+    <section class="slide" data-bg="images/rugged.jpg" data-index="2">
       <div class="card">
-        <h1>What To Do If You Get Lost</h1>
-        <p>
-          If you get lost, stay calm. Stop moving, think, observe your
-          surroundings, and plan. Make yourself visible and call for help.
-        </p>
+        <h1>If You Get Lost</h1>
+        <p>Stay calm, use STOP (Stop, Think, Observe, Plan), and make yourself visible.</p>
 
         <div class="summary">
-          <h3>Simplified Summary</h3>
+          <h3>Quick Summary</h3>
           <ul>
             <li>Stop moving</li>
-            <li>Stay calm and think</li>
-            <li>Call or signal for help</li>
+            <li>Make yourself visible</li>
+            <li>Signal for help</li>
           </ul>
         </div>
 
         <div class="mini-quiz">
-          <p>Mini Quiz — What should you do first?</p>
-          <button class="mini-choice" data-correct="true">Stop and stay calm</button>
-          <button class="mini-choice">Run around</button>
+          <p>Mini quiz — first action?</p>
+          <button class="mini-choice" data-correct="true">Stay Calm</button>
+          <button class="mini-choice">Run Around</button>
           <div class="mini-result"></div>
         </div>
 
-        <button class="nav-btn prev-btn" data-prev="1">Previous</button>
-        <button class="nav-btn next-btn" data-next="3">Next</button>
+        <button class="prev-btn" data-prev="1">Previous</button>
+        <button class="next-btn" data-next="3">Next</button>
       </div>
     </section>
 
-    <!-- --------------------------------------------------------
-      SECTION 4 — Dangers
-    --------------------------------------------------------- -->
-    <section class="slide" data-bg="earth.jpg">
+    <!-- SECTION 3 -->
+    <section class="slide" data-bg="images/earth.jpg" data-index="3">
       <div class="card">
         <h1>Dangers of Hiking</h1>
-        <p>
-          Watch for fast-changing weather, dehydration, and uneven ground.
-          Always stay alert and avoid risky shortcuts.
-        </p>
+        <p>Beware wildlife, terrain, dehydration, and sudden weather.</p>
 
         <div class="summary">
-          <h3>Simplified Summary</h3>
+          <h3>Quick Summary</h3>
           <ul>
-            <li>Weather changes quickly</li>
-            <li>You need to stay hydrated</li>
-            <li>Ground can be dangerous</li>
+            <li>Weather changes fast</li>
+            <li>Stay hydrated</li>
+            <li>Watch your footing</li>
           </ul>
         </div>
 
         <div class="mini-quiz">
-          <p>Mini Quiz — Which is a danger?</p>
+          <p>Mini quiz — danger?</p>
           <button class="mini-choice" data-correct="true">Dehydration</button>
-          <button class="mini-choice">Taking photos</button>
+          <button class="mini-choice">Taking Photos</button>
           <div class="mini-result"></div>
         </div>
 
-        <button class="nav-btn prev-btn" data-prev="2">Previous</button>
-        <button class="nav-btn next-btn" data-next="4">Final Quiz</button>
+        <button class="prev-btn" data-prev="2">Previous</button>
+        <button class="next-btn" data-next="4">Final Quiz</button>
       </div>
     </section>
 
-    <!-- --------------------------------------------------------
-      SECTION 5 — FINAL QUIZ
-    --------------------------------------------------------- -->
-    <section class="slide quiz-slide" data-bg="earth.jpg">
+    <!-- FINAL QUIZ -->
+    <section class="slide quiz-slide" data-bg="images/earth.jpg" data-index="4">
       <div class="card">
-        <h1>Final Trail Map Quiz</h1>
-
-        <div id="quiz-container" class="quiz-container"></div>
+        <h1>Trail Map Quiz</h1>
+        <div id="quiz-container"></div>
 
         <div class="quiz-controls">
           <button id="retake">Retake Quiz</button>
         </div>
 
-        <button class="nav-btn prev-btn" data-prev="3">Previous</button>
-
+        <button class="prev-btn" data-prev="3">Previous</button>
       </div>
     </section>
 
